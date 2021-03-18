@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Framework</title>
+
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="stack">
+  <h1 title="It would be good to have a better name">CSS Framework</h1>
+
+  <section class="switcher" style="--item-basis: 30ch;">
+    <h2 style="flex-basis: 100%;">Colors</h2>
+
+    <style>
+      .color-list {
+        list-style: none;
+        display: block;
+        padding: 0;
+      }
+
+      .color-list li {
+        display: block;
+        background: var(--color);
+        min-height: 2rem;
+      }
+
+      li[style*='transparent'] {
+        display: none;
+      }
+    </style>
+
+    <section>
+      <h3>Primary</h3>
+      <ul class="color-list">
+        <li style="--color: var(--primary-100)">Primary – 100</li>
+        <li style="--color: var(--primary-200)">Primary – 200</li>
+        <li style="--color: var(--primary-300)">Primary – 300</li>
+        <li style="--color: var(--primary-400)">Primary – 400</li>
+        <li style="--color: var(--primary-500)">Primary – 500</li>
+        <li style="--color: var(--primary-600)">Primary – 600</li>
+        <li style="--color: var(--primary-700)">Primary – 700</li>
+        <li style="--color: var(--primary-800)">Primary – 800</li>
+        <li style="--color: var(--primary-900)">Primary – 900</li>
+
+        <li style="--color: var(--primary-transparent-100)">Primary – 100</li>
+        <li style="--color: var(--primary-transparent-200)">Primary – 200</li>
+        <li style="--color: var(--primary-transparent-300)">Primary – 300</li>
+        <li style="--color: var(--primary-transparent-400)">Primary – 400</li>
+        <li style="--color: var(--primary-transparent-500)">Primary – 500</li>
+        <li style="--color: var(--primary-transparent-600)">Primary – 600</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Success</h3>
+      <ul class="color-list">
+        <li style="--color: var(--success-100)">Succeess – 100</li>
+        <li style="--color: var(--success-200)">Succeess – 200</li>
+        <li style="--color: var(--success-300)">Succeess – 300</li>
+        <li style="--color: var(--success-400)">Succeess – 400</li>
+        <li style="--color: var(--success-500)">Succeess – 500</li>
+        <li style="--color: var(--success-600)">Succeess – 600</li>
+        <li style="--color: var(--success-700)">Succeess – 700</li>
+        <li style="--color: var(--success-800)">Succeess – 800</li>
+        <li style="--color: var(--success-900)">Succeess – 900</li>
+
+        <li style="--color: var(--success-transparent-100)">Succeess – 100</li>
+        <li style="--color: var(--success-transparent-200)">Succeess – 200</li>
+        <li style="--color: var(--success-transparent-300)">Succeess – 300</li>
+        <li style="--color: var(--success-transparent-400)">Succeess – 400</li>
+        <li style="--color: var(--success-transparent-500)">Succeess – 500</li>
+        <li style="--color: var(--success-transparent-600)">Succeess – 600</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Info</h3>
+      <ul class="color-list">
+        <li style="--color: var(--info-100)">Succeess – 100</li>
+        <li style="--color: var(--info-200)">Succeess – 200</li>
+        <li style="--color: var(--info-300)">Succeess – 300</li>
+        <li style="--color: var(--info-400)">Succeess – 400</li>
+        <li style="--color: var(--info-500)">Succeess – 500</li>
+        <li style="--color: var(--info-600)">Succeess – 600</li>
+        <li style="--color: var(--info-700)">Succeess – 700</li>
+        <li style="--color: var(--info-800)">Succeess – 800</li>
+        <li style="--color: var(--info-900)">Succeess – 900</li>
+
+        <li style="--color: var(--info-transparent-100)">Succeess – 100</li>
+        <li style="--color: var(--info-transparent-200)">Succeess – 200</li>
+        <li style="--color: var(--info-transparent-300)">Succeess – 300</li>
+        <li style="--color: var(--info-transparent-400)">Succeess – 400</li>
+        <li style="--color: var(--info-transparent-500)">Succeess – 500</li>
+        <li style="--color: var(--info-transparent-600)">Succeess – 600</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Warning</h3>
+      <ul class="color-list">
+        <li style="--color: var(--warning-100)">Succeess – 100</li>
+        <li style="--color: var(--warning-200)">Succeess – 200</li>
+        <li style="--color: var(--warning-300)">Succeess – 300</li>
+        <li style="--color: var(--warning-400)">Succeess – 400</li>
+        <li style="--color: var(--warning-500)">Succeess – 500</li>
+        <li style="--color: var(--warning-600)">Succeess – 600</li>
+        <li style="--color: var(--warning-700)">Succeess – 700</li>
+        <li style="--color: var(--warning-800)">Succeess – 800</li>
+        <li style="--color: var(--warning-900)">Succeess – 900</li>
+
+        <li style="--color: var(--warning-transparent-100)">Succeess – 100</li>
+        <li style="--color: var(--warning-transparent-200)">Succeess – 200</li>
+        <li style="--color: var(--warning-transparent-300)">Succeess – 300</li>
+        <li style="--color: var(--warning-transparent-400)">Succeess – 400</li>
+        <li style="--color: var(--warning-transparent-500)">Succeess – 500</li>
+        <li style="--color: var(--warning-transparent-600)">Succeess – 600</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Danger</h3>
+      <ul class="color-list">
+        <li style="--color: var(--danger-100)">Succeess – 100</li>
+        <li style="--color: var(--danger-200)">Succeess – 200</li>
+        <li style="--color: var(--danger-300)">Succeess – 300</li>
+        <li style="--color: var(--danger-400)">Succeess – 400</li>
+        <li style="--color: var(--danger-500)">Succeess – 500</li>
+        <li style="--color: var(--danger-600)">Succeess – 600</li>
+        <li style="--color: var(--danger-700)">Succeess – 700</li>
+        <li style="--color: var(--danger-800)">Succeess – 800</li>
+        <li style="--color: var(--danger-900)">Succeess – 900</li>
+
+        <li style="--color: var(--danger-transparent-100)">Succeess – 100</li>
+        <li style="--color: var(--danger-transparent-200)">Succeess – 200</li>
+        <li style="--color: var(--danger-transparent-300)">Succeess – 300</li>
+        <li style="--color: var(--danger-transparent-400)">Succeess – 400</li>
+        <li style="--color: var(--danger-transparent-500)">Succeess – 500</li>
+        <li style="--color: var(--danger-transparent-600)">Succeess – 600</li>
+      </ul>
+    </section>
+  </section>
+
+  <section class="stack">
+    <h2>Something</h2>
+    <div class="with-sidebar" style="min-height: 400px">
+      <div>sidebar</div>
+      <div>not-sidebar</div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,55 @@
+:root {
+  --space: 1rem;
+  --column-gap: calc(2 * var(--space));
+  --row-gap: var(--space);
+}
+
+
+/* Still don't know why */
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.stack > * + * {
+  margin-block-start: var(--row-gap);
+}
+
+.stack.recursive * + * {
+  margin-block-start: var(--row-gap);
+}
+
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline: calc(-1 * var(--column-gap) / 2);
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--item-basis, 0) * var(--item-count, 3) - 100%) * 999);
+  margin-inline: calc(var(--column-gap) / 2);
+}
+
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--column-gap) / 2 * -1);
+}
+
+.with-sidebar > * {
+  /* Should properties be physical here? */
+  margin-inline: calc(var(--column-gap) / 2);
+  margin-block: calc(var(--row-gap) / 2);
+  flex-grow: 1;
+  flex-basis: var(--sidebar-basis, 20rem);
+}
+
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  /* Should it be min-height for the vertical writing mode? */
+  min-width: calc(50% - var(--column-gap));
+}
