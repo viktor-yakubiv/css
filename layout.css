@@ -50,6 +50,11 @@
 .with-sidebar > :last-child {
   flex-basis: 0;
   flex-grow: 999;
-  /* Should it be min-height for the vertical writing mode? */
-  min-width: calc(50% - var(--column-gap));
+  min-inline-size: calc(50% - var(--column-gap));
+}
+
+/* Workaround for omitting extra wrapper inside the .with-sidebar */
+.stack > .with-sidebar {
+  /* Should be calculated properly */
+  margin-block-start: calc(var(--row-gap) / 2);
 }
