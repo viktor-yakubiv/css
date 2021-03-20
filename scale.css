@@ -1,0 +1,43 @@
+:root {
+  /* Major second */
+  --scale-ratio: 1.125;
+
+  --scale--5: calc(var(--scale-4) / var(--scale-ratio));
+  --scale--4: calc(var(--scale-3) / var(--scale-ratio));
+  --scale--3: calc(var(--scale-2) / var(--scale-ratio));
+  --scale--2: calc(var(--scale-1) / var(--scale-ratio));
+  --scale--1: calc(var(--scale-0) / var(--scale-ratio));
+  --scale-0: 1;
+  --scale-1:  calc(var(--scale-0)  * var(--scale-ratio));
+  --scale-2:  calc(var(--scale-1)  * var(--scale-ratio));
+  --scale-3:  calc(var(--scale-2)  * var(--scale-ratio));
+  --scale-4:  calc(var(--scale-3)  * var(--scale-ratio));
+  --scale-5:  calc(var(--scale-4)  * var(--scale-ratio));
+  --scale-6:  calc(var(--scale-5)  * var(--scale-ratio));
+  --scale-7:  calc(var(--scale-6)  * var(--scale-ratio));
+  --scale-8:  calc(var(--scale-7)  * var(--scale-ratio));
+  --scale-9:  calc(var(--scale-8)  * var(--scale-ratio));
+  --scale-10: calc(var(--scale-9)  * var(--scale-ratio));
+  --scale-11: calc(var(--scale-10) * var(--scale-ratio));
+  --scale-12: calc(var(--scale-11) * var(--scale-ratio));
+  --scale-13: calc(var(--scale-12) * var(--scale-ratio));
+  --scale-14: calc(var(--scale-13) * var(--scale-ratio));
+  --scale-15: calc(var(--scale-14) * var(--scale-ratio));
+  --scale-16: calc(var(--scale-15) * var(--scale-ratio));
+  --scale-17: calc(var(--scale-16) * var(--scale-ratio));
+  --scale-18: calc(var(--scale-17) * var(--scale-ratio));
+  --scale-19: calc(var(--scale-18) * var(--scale-ratio));
+  --scale-20: calc(var(--scale-19) * var(--scale-ratio));
+  --scale-21: calc(var(--scale-20) * var(--scale-ratio));
+}
+
+:root {
+  --size-base: 1rem;
+  --size-50: calc(var(--scale--2) * var(--size-base));
+  --size-100: calc(var(--scale-1) * var(--size-base));
+  --size-200: calc(var(--scale-2) * var(--size-base));
+  --size-300: calc(var(--scale-3) * var(--size-base));
+  --size-400: calc(var(--scale-5) * var(--size-base));
+  --size-500: calc(var(--scale-8) * var(--size-base));
+  --size-600: calc(var(--scale-13) * var(--size-base));
+}
