@@ -2,10 +2,10 @@
   /* Major second */
   --scale-ratio: 1.125;
 
-  --scale--5: calc(var(--scale-4) / var(--scale-ratio));
-  --scale--4: calc(var(--scale-3) / var(--scale-ratio));
-  --scale--3: calc(var(--scale-2) / var(--scale-ratio));
-  --scale--2: calc(var(--scale-1) / var(--scale-ratio));
+  --scale--5: calc(var(--scale--4) / var(--scale-ratio));
+  --scale--4: calc(var(--scale--3) / var(--scale-ratio));
+  --scale--3: calc(var(--scale--2) / var(--scale-ratio));
+  --scale--2: calc(var(--scale--1) / var(--scale-ratio));
   --scale--1: calc(var(--scale-0) / var(--scale-ratio));
   --scale-0: 1;
   --scale-1:  calc(var(--scale-0)  * var(--scale-ratio));
