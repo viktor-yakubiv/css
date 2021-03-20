@@ -24,25 +24,21 @@
 .switcher {
   display: flex;
   flex-wrap: wrap;
-  margin-inline: calc(-1 * var(--column-gap) / 2);
+  gap: var(--row-gap) var(--column-gap);
 }
 
 .switcher > * {
   flex-grow: 1;
   flex-basis: calc((var(--item-basis, 0) * var(--item-count, 3) - 100%) * 999);
-  margin-inline: calc(var(--column-gap) / 2);
 }
 
 .with-sidebar {
   display: flex;
   flex-wrap: wrap;
-  margin: calc(var(--column-gap) / 2 * -1);
+  gap: var(--row-gap) var(--column-gap);
 }
 
 .with-sidebar > * {
-  /* Should properties be physical here? */
-  margin-inline: calc(var(--column-gap) / 2);
-  margin-block: calc(var(--row-gap) / 2);
   flex-grow: 1;
   flex-basis: var(--sidebar-basis, 20rem);
 }
@@ -51,10 +47,4 @@
   flex-basis: 0;
   flex-grow: 999;
   min-inline-size: calc(50% - var(--column-gap));
-}
-
-/* Workaround for omitting extra wrapper inside the .with-sidebar */
-.stack > .with-sidebar {
-  /* Should be calculated properly */
-  margin-block-start: calc(var(--row-gap) / 2);
 }
