@@ -1,0 +1,111 @@
+:root {
+  --font-family-sans-serif: 
+    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, 
+    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+  --font-family-serif:
+    Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif,
+    Times, Source Serif Pro, serif;
+  --font-family-monospace: 
+    Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+  --font-family-emoji:
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --font-family-display: var(--font-family-sans-serif);
+}
+
+:root {
+  font-family: var(--font-family-sans-serif), var(--font-family-emoji);
+  line-height: var(--scale-3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  line-height: var(--scale-2);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--size-900);
+}
+
+h2 {
+  font-size: var(--size-800);
+}
+
+h3 {
+  font-size: var(--size-700);
+}
+
+h4 {
+  font-size: var(--size-600);
+}
+
+h5 {
+  font-size: var(--size-500);
+}
+
+h6 {
+  font-size: var(--size-400);
+  font-style: italic;
+}
+
+blockquote {
+  font-size: var(--size-500);
+}
+
+figcaption {
+  font-size: var(--size-200);
+}
+
+/* May be too opinionated */
+blockquote + figcaption {
+  text-align: right;
+}
+
+blockquote + figcaption::before {
+  content: '– ';
+}
+
+small {
+  font-size: var(--size-300);
+}
+
+/**
+ * Layout
+ *
+ * Could be moved to a separate file or placed under separate class .text-flow
+ */
+
+
+:is(h1, h2, h3, h4, h5, h6) + * {
+  margin-block-start: var(--size-200);
+}
+
+:is(p, ul, ol, dl) + * {
+  margin-block-start: var(--size-400);
+}
+
+* + figure, figure + * {
+  margin-block-start: var(--size-400);
+}
+
+* + figcaption {
+  margin-block-start: var(--size-200);
+}
+
+/* Experimental: section spacing */
+
+* + h1 {
+  margin-block-start: var(--size-900);
+}
+
+* + h2 {
+  margin-block-start: var(--size-800);
+}
+
+* + h3 {
+  margin-block-start: var(--size-700);
+}
+
+* + h4 {
+  margin-block-start: var(--size-600);
+}

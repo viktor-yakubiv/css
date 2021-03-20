@@ -1,61 +1,21 @@
-h1, h2, h3, p {
-  margin: 0;
-}
-
 body {
   margin: 1rem;
   /* writing-mode: vertical-rl; */
 }
 
-.stack > * {
+/* .stack > * {
   outline: 1px solid red;
 }
 
 .with-sidebar > * {
   outline: 1px solid green;
-}
+} */
 
-html {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-  line-height: var(--scale-3);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+* {
   margin: 0;
-  line-height: var(--scale-3);
-  font-weight: 600;
 }
 
-h1 {
-  font-size: var(--size-900);
-}
-
-h2 {
-  font-size: var(--size-800);
-}
-
-h3 {
-  font-size: var(--size-700);
-}
-
-h4 {
-  font-size: var(--size-600);
-}
-
-h5 {
-  font-size: var(--size-500);
-}
-
-h6 {
-  font-size: var(--size-400);
-  font-style: italic;
-}
-
-small {
-  font-size: var(--size-300);
+.hidden,
+[hidden] {
+  display: none !important;
 }
