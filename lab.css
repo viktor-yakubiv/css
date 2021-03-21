@@ -1,0 +1,31 @@
+/**
+ * Unplaced things
+ */
+
+/* Under consideration */
+* {
+  margin: 0;
+}
+
+/* Should be part of sanitize.css */
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/**
+ * Debugging
+ */
+
+body {
+  margin: 1rem;
+  /* writing-mode: vertical-rl; */
+}
+
+/* .stack > * {
+  outline: 1px solid red;
+}
+
+.with-sidebar > * {
+  outline: 1px solid green;
+} */
