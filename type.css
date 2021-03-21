@@ -13,6 +13,19 @@
 }
 
 :root {
+  /**
+   * Enables negative block spacing for text elements to fix the visual spacing
+   * when combine large and small font sizes, e.g. <h1> and <p>.
+   * 
+   * @type {Number}, either 0 (disabled) or 1 (enabled)
+   */
+  --vertical-rhythm: 1;
+
+  --heading-spacing: var(--size-400);
+  --body-spacing: var(--size-400);
+}
+
+:root {
   font-family: var(--font-family-sans-serif), var(--font-family-emoji);
   line-height: var(--scale-3);
 }
@@ -77,11 +90,11 @@ small {
 
 
 :is(h1, h2, h3, h4, h5, h6) + * {
-  margin-block-start: var(--size-200);
+  margin-block-start: var(--heading-spacing);
 }
 
 :is(p, ul, ol, dl) + * {
-  margin-block-start: var(--size-400);
+  margin-block-start: var(--body-spacing);
 }
 
 * + figure, figure + * {
@@ -98,14 +111,24 @@ small {
   margin-block-start: var(--size-900);
 }
 
-* + h2 {
+/**
+ * Here and below :where() is used to have the same specificity
+ * as a combining with the universal selector (*) as above.
+ */
+:where(:not(h1)) + h2 {
   margin-block-start: var(--size-800);
 }
 
-* + h3 {
+:where(:not(h2)) + h3 {
   margin-block-start: var(--size-700);
 }
 
-* + h4 {
+:where(:not(h3)) + h4 {
   margin-block-start: var(--size-600);
+}
+
+/* Experimental: Vertical rhythm fix */
+
+h1, h2, h3, h4, h5, h6, p, figcaption {
+  margin-block-end: calc(var(--vertical-rhythm) * (1em - 1ex) / -2)
 }
