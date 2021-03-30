@@ -1,12 +1,29 @@
+/**
+ * Defining the general scaling factor
+ * 
+ * We use the Major Second for the scale rhythm.
+ */
 :root {
-  /* Major second */
   --scale-ratio: 1.125;
+}
 
+/**
+ * Defining all necessary scale factors
+ * 
+ * This is mostly internal but could be also used to set a value for
+ * line-height or other properties requiring pure numbers.
+ *
+ * We define scale factors from -5, i.e s⁻⁵ to +13, i.e. s¹³, where
+ * "s" is the base scale factor, defined as --scale-ratio custom property.
+ * This range of values lets us define a Fibonacci sequence for sizes
+ * with the scale factor up to F₇ (with value 13).
+ */
+:root {
   --scale--5: calc(var(--scale--4) / var(--scale-ratio));
   --scale--4: calc(var(--scale--3) / var(--scale-ratio));
   --scale--3: calc(var(--scale--2) / var(--scale-ratio));
   --scale--2: calc(var(--scale--1) / var(--scale-ratio));
-  --scale--1: calc(var(--scale-0) / var(--scale-ratio));
+  --scale--1: calc(var(--scale-0)  / var(--scale-ratio));
   --scale-0: 1;
   --scale-1:  calc(var(--scale-0)  * var(--scale-ratio));
   --scale-2:  calc(var(--scale-1)  * var(--scale-ratio));
@@ -21,16 +38,16 @@
   --scale-11: calc(var(--scale-10) * var(--scale-ratio));
   --scale-12: calc(var(--scale-11) * var(--scale-ratio));
   --scale-13: calc(var(--scale-12) * var(--scale-ratio));
-  --scale-14: calc(var(--scale-13) * var(--scale-ratio));
-  --scale-15: calc(var(--scale-14) * var(--scale-ratio));
-  --scale-16: calc(var(--scale-15) * var(--scale-ratio));
-  --scale-17: calc(var(--scale-16) * var(--scale-ratio));
-  --scale-18: calc(var(--scale-17) * var(--scale-ratio));
-  --scale-19: calc(var(--scale-18) * var(--scale-ratio));
-  --scale-20: calc(var(--scale-19) * var(--scale-ratio));
-  --scale-21: calc(var(--scale-20) * var(--scale-ratio));
 }
 
+
+/**
+ * Defining the sizes.
+ *
+ * Sizes are used in various places. The naming is based on the font weight
+ * options: 400 indicates the regular (normal) size, everything above is larger
+ * and below – smaller.
+ */
 :root {
   --size-100: calc(1rem * var(--scale--5));
   --size-200: calc(1rem * var(--scale--3));
