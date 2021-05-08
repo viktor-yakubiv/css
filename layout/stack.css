@@ -1,6 +1,6 @@
 /**
- * 1. Fix margin stacking
- * 2. Restore default direction and alignment
+ * 1. Fixes margin stacking
+ * 2. Restores default direction and alignment
  */
 .stack {
   display: flex; /* 1 */

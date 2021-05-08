@@ -1,4 +1,6 @@
 @import url('./stack.css');
+@import url('./box.css');
+@import url('./center.css');
 @import url('./switcher.css');
 @import url('./cluster.css');
 @import url('./sidebar.css');
