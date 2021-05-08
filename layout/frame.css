@@ -1,0 +1,54 @@
+.frame {
+  aspect-ratio: var(--inline-ratio) / var(--block-ratio);
+  object-fit: cover;
+}
+
+.frame.rounded {
+  border-radius: 2048px;
+}
+
+.frame.1x1,
+.frame.square {
+  --inline-ratio: 1;
+  --block-ratio: 1;
+}
+
+.frame.2x1 {
+  --inline-ratio: 2;
+  --block-ratio: 1;
+}
+
+.frame.1x2 {
+  --inline-ratio: 1;
+  --block-ratio: 2;
+}
+
+.frame.3x2 {
+  --inline-ratio: 3;
+  --block-ratio: 2;
+}
+
+.frame.2x3 {
+  --inline-ratio: 2;
+  --block-ratio: 3;
+}
+
+.frame.4x3 {
+  --inline-ratio: 4;
+  --block-ratio: 3;
+}
+
+.frame.3x4 {
+  --inline-ratio: 3;
+  --block-ratio: 4;
+}
+
+.frame.16x9 {
+  --inline-ratio: 16;
+  --block-ratio: 9;
+}
+
+.frame.9x16 {
+  --inline-ratio: 9;
+  --block-ratio: 16;
+}
