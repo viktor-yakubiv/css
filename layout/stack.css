@@ -1,0 +1,17 @@
+/**
+ * 1. Fix margin stacking
+ * 2. Restore default direction and alignment
+ */
+.stack {
+  display: flex; /* 1 */
+  flex-direction: column; /* 2 */
+  justify-content: flex-start; /* 2 */
+}
+
+.stack > * + * {
+  margin-block-start: var(--row-gap);
+}
+
+.stack.recursive * + * {
+  margin-block-start: var(--row-gap);
+}

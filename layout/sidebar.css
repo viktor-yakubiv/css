@@ -1,0 +1,16 @@
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--row-gap) var(--column-gap);
+}
+
+.with-sidebar > * {
+  flex-grow: 1;
+  flex-basis: var(--sidebar-basis, 20rem);
+}
+
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: calc(50% - var(--column-gap));
+}

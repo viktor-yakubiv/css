@@ -1,0 +1,10 @@
+@import url('./stack.css');
+@import url('./switcher.css');
+@import url('./cluster.css');
+@import url('./sidebar.css');
+@import url('./blog.css');
+
+:root {
+  --column-gap: calc(2 * var(--size-300));
+  --row-gap: var(--size-400);
+}

@@ -1,0 +1,10 @@
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--row-gap) var(--column-gap);
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--break-inline-size, 0) - 100%) * 999);
+}

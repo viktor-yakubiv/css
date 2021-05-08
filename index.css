@@ -1,6 +1,6 @@
-@import url('colors.css');
-@import url('scale.css');
-@import url('layout.css');
-@import url('type.css');
+@import url('./colors.css');
+@import url('./scale.css');
+@import url('./type.css');
+@import url('./layout/index.css');
 
-@import url('lab.css');
+@import url('./lab.css');

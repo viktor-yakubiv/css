@@ -1,14 +1,43 @@
 :root {
-  --font-family-sans-serif: 
-    -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, 
-    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+  --font-family-sans-serif:
+    system-ui,
+    /* macOS 10.11-10.12 */ -apple-system,
+    /* Windows 6+ */ 'Segoe UI',
+    /* Android 4+ */ 'Roboto',
+    /* Ubuntu 10.10+ */ 'Ubuntu',
+    /* Gnome 3+ */ 'Cantarell',
+    /* KDE Plasma 5+ */ 'Noto Sans',
+    /* fallback */ sans-serif,
+    /* macOS emoji */ 'Apple Color Emoji',
+    /* Windows emoji */ 'Segoe UI Emoji',
+    /* Windows emoji */ 'Segoe UI Symbol',
+    /* Linux emoji */ 'Noto Color Emoji';
   --font-family-serif:
-    Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif,
-    Times, Source Serif Pro, serif;
-  --font-family-monospace: 
-    Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
-  --font-family-emoji:
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    'Iowan Old Style',
+    'Apple Garamond',
+    'Baskerville',
+    'Times New Roman',
+    'Droid Serif',
+    'Times',
+    'Source Serif Pro',
+    /* fallback */ serif,
+    /* macOS emoji */ 'Apple Color Emoji',
+    /* Windows emoji */ 'Segoe UI Emoji',
+    /* Windows emoji */ 'Segoe UI Symbol',
+    /* Linux emoji */ 'Noto Color Emoji';
+  --font-family-monospace:
+    /* macOS 10.10+ */ 'Menlo',
+    /* Windows 6+ */ 'Consolas',
+    /* Android 4+ */ 'Roboto Mono',
+    /* Ubuntu 10.10+ */ 'Ubuntu Monospace',
+    /* KDE Plasma 5+ */ 'Noto Mono',
+    /* KDE Plasma 4+ */ 'Oxygen Mono',
+    /* Linux/OpenOffice fallback */ 'Liberation Mono',
+    /* fallback */ monospace,
+    /* macOS emoji */ 'Apple Color Emoji',
+    /* Windows emoji */ 'Segoe UI Emoji',
+    /* Windows emoji */ 'Segoe UI Symbol',
+    /* Linux emoji */ 'Noto Color Emoji';
   --font-family-display: var(--font-family-sans-serif);
 }
 
@@ -26,7 +55,75 @@
 }
 
 :root {
-  font-family: var(--font-family-sans-serif), var(--font-family-emoji);
+  --heading-1-size: var(--size-900);
+  --heading-1-weight: 600;
+  --heading-1-spacing: 0.625rem;
+  --heading-1-case: var(--size-900);
+
+  --heading-2-size: var(--size-800);
+  --heading-2-weight: 600;
+  --heading-2-spacing: 0.625rem;
+  --heading-2-case: var(--size-800);
+
+  --heading-3-size: var(--size-700);
+  --heading-3-weight: 600;
+  --heading-3-spacing: 0.625rem;
+  --heading-3-case: var(--size-700);
+
+  --heading-4-size: var(--size-600);
+  --heading-4-weight: 600;
+  --heading-4-spacing: 0.625rem;
+  --heading-4-case: var(--size-600);
+
+  --headign-5-size: var(--size-500);
+  --headign-5-weight: 600;
+  --headign-5-spacing: 0.625rem;
+  --headign-5-case: var(--size-500);
+
+  --heading-6-size: var(--size-400);
+  --heading-6-weight: 600;
+  --heading-6-spacing: 0.625rem;
+  --heading-6-case: var(--size-400);
+
+  --subtitle-1-size: var(--size-400);
+  --subtitle-1-weight: var(--size-400);
+  --subtitle-1-spacing: 0.625rem;
+  --subtitle-1-case: var(--size-400);
+
+  --subtitle-2-size: var(--size-300);
+  --subtitle-2-weight: var(--size-300);
+  --subtitle-2-spacing: var(--size-300);
+  --subtitle-2-case: var(--size-300);
+
+  --body-1-size: var(--size-400);
+  --body-1-weight: var(--size-400);
+  --body-1-spacing: var(--size-400);
+  --body-1-case: var(--size-400);
+
+  --body-2-size: var(--size-400);
+  --body-2-weight: var(--size-400);
+  --body-2-spacing: var(--size-400);
+  --body-2-case: var(--size-400);
+
+  --button-size: var(--size-400);
+  --button-weight: var(--size-400);
+  --button-spacing: var(--size-400);
+  --button-case: var(--size-400);
+
+  --caption-size: var(--size-200);
+  --caption-weight: var(--size-200);
+  --caption-spacing: var(--size-200);
+  --caption-case: var(--size-200);
+
+  --overline-size: var(--size-100);
+  --overline-weight: var(--size-100);
+  --overline-spacing: var(--size-100);
+  --overline-case: var(--size-100);
+
+}
+
+:root {
+  font-family: var(--font-family-sans-serif);
   line-height: var(--scale-3);
 }
 

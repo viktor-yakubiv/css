@@ -1,0 +1,17 @@
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--row-gap) var(--column-gap);
+}
+
+/**
+ * The basic layout is not a broken layout (Heydon Pickering)
+ * 
+ * https://briefs.video/videos/is-progressive-enhancement-dead-yet/
+ */
+@supports not (gap: var(--row-gap) var(--column-gap)) {
+  .cluster > * {
+    margin-block-end: var(--row-gap);
+    margin-inline-end: var(--column-gap);
+  }
+}

@@ -1,0 +1,40 @@
+:root {
+  --content-inline-size: 40rem;
+}
+
+/* .blog > * {
+  margin-inline: auto;
+  max-inline-size: var(--content-inline-size);
+}
+
+.blog > figure {
+  outline: 1px solid red;
+  inline-size: calc((100% - var(--content-inline-size)) / 2 + var(--content-inline-size));
+  max-inline-size: 100%;
+  margin-inline: auto 0;
+} */
+
+.blog {
+  display: grid;
+  grid-template-columns: 1fr fit-content(65ch) 1fr;
+}
+
+.blog > * {
+  grid-column: 2 / -2;
+}
+
+.blog > figure {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-auto-rows: min-content;
+  grid-column: 1 / -1;
+}
+
+.blog > figure > * {
+  grid-column: 2 / -1;
+}
+
+.blog > figure > figcaption {
+  grid-column: 1;
+  grid-row: 1;
+}
