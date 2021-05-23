@@ -1,0 +1,22 @@
+{
+  "name": "elf",
+  "version": "0.0.0",
+  "description": "Every Layout Framework, an experiment",
+  "author": "Viktor Yakubiv (www.yakubiv.com)",
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "layout"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viktor-yakubiv/css.git"
+  },
+  "homepage": "https://github.com/viktor-yakubiv/css#readme",
+  "devDependencies": {
+    "parcel": "*"
+  },
+  "scripts": {
+    "start": "parcel --port 3000 index.html"
+  }
+}
