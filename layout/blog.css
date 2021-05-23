@@ -38,3 +38,37 @@
   grid-column: 1;
   grid-row: 1;
 }
+
+.blog2 {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  /* align-items: center; */
+}
+
+.blog2 > * {
+  flex-basis: var(--content-inline-size);
+  flex-shrink: 1;
+  margin-inline-end: auto;
+}
+
+.blog2 > figure {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-grow: 999;
+  margin-inline-end: none;
+}
+
+.blog2 > figure > * {
+  flex-basis: var(--content-inline-size);
+  flex-shrink: 1;
+  /* width: calc(var(--content-inline-size) + auto / 2); */
+}
+
+.blog2 > figure > figcaption {
+  /* width: calc(auto / 2); */
+  flex-grow: 999;
+  flex-basis: auto;
+}
+
