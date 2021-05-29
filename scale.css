@@ -40,22 +40,49 @@
   --scale-13: calc(var(--scale-12) * var(--scale-ratio));
 }
 
+/**
+ * Defining scale interface.
+ *
+ * Scales could be used for line heights or in other places where
+ * a pure number is expected.
+ * 
+ * The naming is based on the font weight options: 400 indicates
+ * the regular (normal) size, everything above is larger and below – smaller.
+ */
+:root {
+  --scale-100: var(--scale--5);
+  --scale-200: var(--scale--3);
+  --scale-300: var(--scale--2);
+  --scale-400: var(--scale-0);
+  --scale-500: var(--scale-2);
+  --scale-600: var(--scale-3);
+  --scale-700: var(--scale-5);
+  --scale-800: var(--scale-8);
+  --scale-900: var(--scale-13);
+}
 
 /**
  * Defining the sizes.
  *
- * Sizes are used in various places. The naming is based on the font weight
- * options: 400 indicates the regular (normal) size, everything above is larger
- * and below – smaller.
+ * Sizes are used to scale fonts, paddings and margins.
+ * 
+ * The naming is based on the font weight options: 400 indicates
+ * the regular (normal) size, everything above is larger and below – smaller.
  */
 :root {
-  --size-100: calc(1rem * var(--scale--5));
-  --size-200: calc(1rem * var(--scale--3));
-  --size-300: calc(1rem * var(--scale--2));
-  --size-400: calc(1rem * var(--scale-0));
-  --size-500: calc(1rem * var(--scale-2));
-  --size-600: calc(1rem * var(--scale-3));
-  --size-700: calc(1rem * var(--scale-5));
-  --size-800: calc(1rem * var(--scale-8));
-  --size-900: calc(1rem * var(--scale-13));
+  --size-100: calc(1rem * var(--scale-100));
+  --size-200: calc(1rem * var(--scale-200));
+  --size-300: calc(1rem * var(--scale-300));
+  --size-400: calc(1rem * var(--scale-400));
+  --size-500: calc(1rem * var(--scale-500));
+  --size-600: calc(1rem * var(--scale-600));
+  --size-700: calc(1rem * var(--scale-700));
+  --size-800: calc(1rem * var(--scale-800));
+  --size-900: calc(1rem * var(--scale-900));
+}
+
+:root {
+  --line-size-100: 0.0625rem;
+  --line-size-200: 0.125rem;
+  --line-size-300: .25rem;
 }
