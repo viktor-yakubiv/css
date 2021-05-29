@@ -41,69 +41,31 @@
   --font-family-display: var(--font-family-sans-serif);
 }
 
-:root {
-  /**
-   * Enables negative block spacing for text elements to fix the visual spacing
-   * when combine large and small font sizes, e.g. <h1> and <p>.
-   * 
-   * @type {Number}, either 0 (disabled) or 1 (enabled)
-   */
-  --vertical-rhythm: 1;
 
+/* Typographical spacing */
+:root {
   --heading-spacing: var(--size-400);
   --body-spacing: var(--size-400);
+  --box-spacing: var(--size-600);
 }
 
+/* Headings */
 :root {
-  --heading-1-size: var(--size-900);
-  --heading-1-weight: 600;
-  --heading-1-spacing: 0.625rem;
-  --heading-1-case: var(--size-900);
+  --heading-size-1: var(--size-900);
+  --heading-size-2: var(--size-800);
+  --heading-size-3: var(--size-700);
+  --heading-size-4: var(--size-600);
+  --heading-size-5: var(--size-500);
+  --heading-size-6: var(--size-400);
+  --heading-letter-spacing: 0.625rem;
+  --heading-font-weight: 600;
+  --heading-line-height: var(--scale-500);
+}
 
-  --heading-2-size: var(--size-800);
-  --heading-2-weight: 600;
-  --heading-2-spacing: 0.625rem;
-  --heading-2-case: var(--size-800);
-
-  --heading-3-size: var(--size-700);
-  --heading-3-weight: 600;
-  --heading-3-spacing: 0.625rem;
-  --heading-3-case: var(--size-700);
-
-  --heading-4-size: var(--size-600);
-  --heading-4-weight: 600;
-  --heading-4-spacing: 0.625rem;
-  --heading-4-case: var(--size-600);
-
-  --headign-5-size: var(--size-500);
-  --headign-5-weight: 600;
-  --headign-5-spacing: 0.625rem;
-  --headign-5-case: var(--size-500);
-
-  --heading-6-size: var(--size-400);
-  --heading-6-weight: 600;
-  --heading-6-spacing: 0.625rem;
-  --heading-6-case: var(--size-400);
-
-  --subtitle-1-size: var(--size-400);
-  --subtitle-1-weight: var(--size-400);
-  --subtitle-1-spacing: 0.625rem;
-  --subtitle-1-case: var(--size-400);
-
-  --subtitle-2-size: var(--size-300);
-  --subtitle-2-weight: var(--size-300);
-  --subtitle-2-spacing: var(--size-300);
-  --subtitle-2-case: var(--size-300);
-
-  --body-1-size: var(--size-400);
-  --body-1-weight: var(--size-400);
-  --body-1-spacing: var(--size-400);
-  --body-1-case: var(--size-400);
-
-  --body-2-size: var(--size-400);
-  --body-2-weight: var(--size-400);
-  --body-2-spacing: var(--size-400);
-  --body-2-case: var(--size-400);
+/* Rest */
+:root {
+  --body-size-1: var(--size-400);
+  --body-size-2: var(--size-400);
 
   --button-size: var(--size-400);
   --button-weight: var(--size-400);
@@ -119,7 +81,6 @@
   --overline-weight: var(--size-100);
   --overline-spacing: var(--size-100);
   --overline-case: var(--size-100);
-
 }
 
 :root {
