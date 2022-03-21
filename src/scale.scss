@@ -1,0 +1,103 @@
+/*!
+ * Scale
+ *
+ * Global scale for (font) sizing and spacing.
+ *
+ * Size scale is designed to use for scaling text and icons.
+ * Space scale is designed to use for scaling margin, padding,
+ * gap (grid and flexbox gap) or any other non-textual whitespace.
+ *
+ * 400 is assumed to be default, similar to the normal font weight for text.
+ * The scale was designed based on this assumption, starting from 400
+ * and increasing it for the higher numbers, and decreasing for the lower ones.
+ *
+ * The naming convention intentionally presumes possibility
+ * to create intermediate options like `--size-450: 1.125rem;`
+ * but those are recommended be avoided unless necessary.
+ */
+@use 'sass:math';
+@use 'sass:map';
+
+$scale-ratio: 1.15 !default;
+$scale-base: 1rem !default;
+
+@function round($value, $precision: .05) {
+  $multiplier: math.div(1, $precision);
+  @return math.div(math.round($value * $multiplier), $multiplier);
+}
+
+@function scale($index, $base: $scale-base, $ratio: $scale-ratio) {
+  @return round($base * math.pow($ratio, $index));
+}
+
+$size-100: scale(-3) !default;
+$size-200: scale(-2) !default;
+$size-300: scale(-1) !default;
+$size-400: scale(0) !default;
+$size-500: scale(1) !default;
+$size-600: scale(2) !default;
+$size-700: scale(3) !default;
+$size-800: scale(5) !default;
+$size-900: scale(8) !default;
+
+$size: (
+  100: $size-100,
+  200: $size-200,
+  300: $size-300,
+  400: $size-400,
+  500: $size-500,
+  600: $size-600,
+  700: $size-700,
+  800: $size-800,
+  900: $size-900,
+) !default;
+
+$space-100: scale(-3) !default;
+$space-200: scale(-2) !default;
+$space-300: scale(-1) !default;
+$space-400: scale(0) !default;
+$space-500: scale(1) !default;
+$space-600: scale(3) !default;
+$space-700: scale(5) !default;
+$space-800: scale(8) !default;
+$space-900: scale(13) !default;
+
+$space: (
+  100: $space-100,
+  200: $space-200,
+  300: $space-300,
+  400: $space-400,
+  500: $space-500,
+  600: $space-600,
+  700: $space-700,
+  800: $space-800,
+  900: $space-900,
+) !default;
+
+:root {
+  /* Size */
+  @for $i from 1 through 9 {
+    --size-#{100 * $i}: #{map.get($size, 100 * $i)};
+  }
+
+  /* Space */
+  @for $i from 1 through 9 {
+    --space-#{100 * $i}: #{map.get($space, 100 * $i)};
+  }
+}
+
+@function size($index: 400) {
+  @if $index % 100 > 0 {
+    @warn '--size-#{$index} may be undefined';
+  }
+
+  @return var(--size-#{$index});
+}
+
+@function space($index: 400) {
+  @if $index % 100 > 0 {
+    @warn '--space-#{$index} may be undefined';
+  }
+
+  @return var(--space-#{$index});
+}
