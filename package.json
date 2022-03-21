@@ -1,0 +1,11 @@
+{
+  "name": "@yakubiv/css",
+  "version": "0.1.0",
+  "description": "CSS snippets",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viktor-yakubiv/css.git"
+  },
+  "author": "Viktor Yakubiv (www.yakubiv.com)",
+  "license": "MIT"
+}
