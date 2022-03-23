@@ -8,10 +8,12 @@
   },
   "author": "Viktor Yakubiv (www.yakubiv.com)",
   "license": "MIT",
-  "devDependencies": {
-    "sass": "^1.49.9"
+  "bin": "./bin/index.js",
+  "dependencies": {
+    "sass": "^1.49.9",
+    "yargs": "^17.4.0"
   },
   "scripts": {
-    "build": "sass --no-source-map .:."
+    "build": "node ./bin build"
   }
 }
