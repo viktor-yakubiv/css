@@ -1,0 +1,37 @@
+@use '../scale';
+
+@mixin stack($row-gap: scale.space()) {
+  --row-gap: #{$row-gap};
+
+  row-gap: var(--row-gap);
+  list-style: none; // 1
+
+  @supports (gap: 1rem) {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  @supports not (gap: 1rem) {
+    & > * {
+      --spacer: #{$row-gap};
+      margin-block: 0;
+    }
+
+    & > * + * {
+      margin-block-start: var(--spacer);
+    }
+  }
+
+  @supports not (margin-block-start: 1rem) {
+    & > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    & > * + * {
+      margin-top: var(--spacer);
+    }
+  }
+}

@@ -1,0 +1,35 @@
+@use '../scale';
+
+@mixin icon(
+  $size: 0px,
+  $outset: 0px,
+  $space: var(--col-gap, #{space(200)}),
+) {
+  --inline-space: #{$space};
+  --outset: #{$outset};
+
+  @if $size > 0 {
+    --icon-size: #{$size};
+  }
+
+  display: inline-block;
+  inline-size: var(--icon-size, calc(.75em + 2 * var(--outset)));
+  block-size: var(--icon-size, calc(.75em + 2 * var(--outset)));
+  margin-inline: calc(-1 * var(--outset));
+  margin-block: calc(var(--space) - var(--outset));
+  color: var(--icon-color, inherit);
+  fill: currentColor;
+
+  &:first-child {
+    margin-inline-start: calc(-1 * var(--outset));
+  }
+
+  &:last-child {
+    margin-inline-end: calc(-1 * var(--outset));
+  }
+
+  @supports (inline-size: 1cap) {
+    inline-size: var(--icon-size, calc(1cap + 2 * var(--outset)));
+    block-size: var(--icon-size, calc(1cap + 2 * var(--outset)));
+  }
+}

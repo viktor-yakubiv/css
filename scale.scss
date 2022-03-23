@@ -1,0 +1,20 @@
+/*!
+ * Scale
+ *
+ * Global scale for (font) sizing and spacing.
+ *
+ * Size scale is designed to use for scaling text and icons.
+ * Space scale is designed to use for scaling margin, padding,
+ * gap (grid and flexbox gap) or any other non-textual whitespace.
+ *
+ * 400 is assumed to be default, similar to the normal font weight for text.
+ * The scale was designed based on this assumption, starting from 400
+ * and increasing it for the higher numbers, and decreasing for the lower ones.
+ *
+ * The naming convention intentionally presumes possibility
+ * to create intermediate options like `--size-450: 1.125rem;`
+ * but those are recommended be avoided unless necessary.
+ */
+@use 'lib/scale';
+
+@include scale.define();

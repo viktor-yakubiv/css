@@ -1,0 +1,18 @@
+@use '../scale';
+
+@mixin box($inset-block: scale.space(), $inset-inline: scale.space()) {
+  --inset-block: #{$inset-block};
+  --inset-inline: #{$inset-inline};
+
+  padding-block: var(--inset-block);
+  padding-inline: var(--inset-inline);
+  list-style: none; /* 1 */
+
+  :where(&) {
+    display: block; // 2
+  }
+
+  @supports not (padding-block:  1rem) {
+    padding: var(--inset-block) var(--inset-inline);
+  }
+}

@@ -1,0 +1,32 @@
+@use '../scale';
+
+@mixin sidebar($row-gap: scale.space(600), $col-gap: scale.space(700), $size: 0) {
+  &:where(.with) {
+    --row-gap: #{$row-gap};
+    --col-gap: #{$col-gap};
+
+    @if $size > 0 {
+      --sidebar-size: #{$size};
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: #{$row-gap};
+    column-gap: #{$col-gap};
+  }
+
+  &:where(.with) > * {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: 50%;
+
+    @supports not (min-inline-size: 50%) {
+      min-width: 50%;
+    }
+  }
+
+  &:where(.with) > & {
+    flex-basis: var(--sidebar-size);
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,26 @@
+@use '../scale';
+
+@mixin cluster($row-gap: scale.space(200), $col-gap: scale.space(200)) {
+  --row-gap: #{$row-gap};
+  --col-gap: #{$col-gap};
+
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--row-gap);
+  column-gap: var(--col-gap);
+  list-style: none;
+
+  @supports not (gap: 1rem 1rem) {
+    & > * {
+      margin-block-end: var(--row-gap);
+      margin-inline-end: var(--col-gap);
+    }
+  }
+
+  @supports not (margin-inline-end: 1rem) {
+    & > * {
+      margin-right: var(--col-gap);
+      margin-bottom: var(--row-gap);
+    }
+  }
+}

@@ -12,6 +12,6 @@
     "sass": "^1.49.9"
   },
   "scripts": {
-    "build": "sass --no-source-map src:dist"
+    "build": "sass --no-source-map .:."
   }
 }
