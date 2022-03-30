@@ -1,15 +1,16 @@
 @use 'sass:math';
 @use 'sass:map';
 
-$scale-ratio: 1.15 !default;
-$scale-base: 1rem !default;
+$ratio: 1.15 !default;
+$base: 1rem !default;
+$precision: .05;
 
-@function round($value, $precision: .05) {
+@function round($value, $precision: $precision) {
   $multiplier: math.div(1, $precision);
   @return math.div(math.round($value * $multiplier), $multiplier);
 }
 
-@function scale($index, $base: $scale-base, $ratio: $scale-ratio) {
+@function scale($index, $base: $base, $ratio: $ratio) {
   @return round($base * math.pow($ratio, $index));
 }
 
