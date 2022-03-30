@@ -3,6 +3,7 @@ const path = require('path')
 const sass = require('sass')
 
 const SOURCE_DIR = path.join(__dirname, '../../')
+const LIB_DIR = path.join(SOURCE_DIR, 'lib')
 const DEFAULT_DIST_DIR = SOURCE_DIR
 
 const run = async ({ out } = {}) => {
@@ -19,7 +20,9 @@ const run = async ({ out } = {}) => {
     const srcFile = path.join(SOURCE_DIR, fileName)
     const destFile = path.join(outputDir, `${name}.css`)
 
-    const result = sass.compile(srcFile)
+    const result = sass.compile(srcFile, {
+      loadPaths: [LIB_DIR],
+    })
 
     return fs.writeFile(destFile, result.css).then(passedResult => {
       console.log(`✔ ${name}.css`)
