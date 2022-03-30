@@ -1,0 +1,12 @@
+@use 'sass:list';
+
+// For any list of passed custom properties,
+// creates a var()-fallback chain where each next one is a fallback value
+// for the previous one.
+@function var-options($value, $fallback...) {
+  @if list.length($fallback) > 0 {
+    @return var($value, var-options($fallback...))
+  }
+
+  @return var($value)
+}

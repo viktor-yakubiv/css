@@ -3,10 +3,13 @@
     --switcher-breakpoint: #{$breakpoint};
   }
 
+  $row-gap: var-options(--row-gap, --switcher-row-gap, --theme-row-gap);
+  $col-gap: var-options(--col-gap, --switcher-col-gap, --theme-col-gap);
+
   display: flex;
   flex-wrap: wrap;
-  row-gap: var(--row-gap);
-  column-gap: var(--col-gap);
+  row-gap: $row-gap;
+  column-gap: $col-gap;
 
   & > * {
     flex-basis: calc((var(--switcher-breakpoint) - 100%) * 999);

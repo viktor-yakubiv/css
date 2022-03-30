@@ -1,21 +1,26 @@
+@use 'utils' as *;
+
 @mixin cluster {
+  $row-gap: var-options(--row-gap, --cluster-row-gap, --theme-row-gap);
+  $col-gap: var-options(--col-gap, --cluster-col-gap, --theme-col-gap);
+
   display: flex;
   flex-wrap: wrap;
-  row-gap: var(--row-gap);
-  column-gap: var(--col-gap);
+  row-gap: $row-gap;
+  column-gap: $col-gap;
   list-style: none;
 
   @supports not (gap: 1rem 1rem) {
     & > * {
-      margin-block-end: var(--row-gap);
-      margin-inline-end: var(--col-gap);
+      margin-block-end: $row-gap;
+      margin-inline-end: $col-gap;
     }
   }
 
   @supports not (margin-inline-end: 1rem) {
     & > * {
-      margin-right: var(--col-gap);
-      margin-bottom: var(--row-gap);
+      margin-right: $col-gap;
+      margin-bottom: $row-gap;
     }
   }
 }

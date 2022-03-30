@@ -1,8 +1,22 @@
 // 1. Reset marker if applied to a list item
 // 2. Introduces block layout unless said it's something different
+@use 'utils' as *;
+
 @mixin box {
-  padding-block: var(--inset-block);
-  padding-inline: var(--inset-inline);
+  $padding-block: var-options(
+    --inset-block,
+    --box-inset-block,
+    --theme-inset-block,
+  );
+
+  $padding-inline: var-options(
+    --inset-inline,
+    --box-inset-inline,
+    --theme-inset-inline,
+  );
+
+  padding-block: $padding-block;
+  padding-inline: $padding-inline;
   list-style: none; // 1
 
   :where(&) {
@@ -10,6 +24,6 @@
   }
 
   @supports not (padding-block:  1rem) {
-    padding: var(--inset-block) var(--inset-inline);
+    padding: $padding-block $padding-inline;
   }
 }
