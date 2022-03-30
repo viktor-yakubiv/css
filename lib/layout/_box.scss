@@ -1,11 +1,6 @@
-@use '../scale';
-
 // 1. Reset marker if applied to a list item
 // 2. Introduces block layout unless said it's something different
-@mixin box($inset-block: scale.space(), $inset-inline: scale.space()) {
-  --inset-block: #{$inset-block};
-  --inset-inline: #{$inset-inline};
-
+@mixin box {
   padding-block: var(--inset-block);
   padding-inline: var(--inset-inline);
   list-style: none; // 1

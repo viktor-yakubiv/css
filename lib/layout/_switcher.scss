@@ -1,11 +1,6 @@
-@use '../scale';
-
-@mixin switcher($breakpoint: 0, $row-gap: scale.space(600), $col-gap: scale.space(700)) {
-  --row-gap: #{$row-gap};
-  --col-gap: #{$col-gap};
-
+@mixin switcher($breakpoint: 0) {
   @if $breakpoint > 0 {
-    --switcher-breakpoint: #{breakpoint};
+    --switcher-breakpoint: #{$breakpoint};
   }
 
   display: flex;
@@ -14,7 +9,7 @@
   column-gap: var(--col-gap);
 
   & > * {
-    flex-basis: calc((var(--switcher-breakpoint, 30rem) - 100%) * 999);
+    flex-basis: calc((var(--switcher-breakpoint) - 100%) * 999);
     flex-grow: 1;
   }
 }

@@ -1,8 +1,4 @@
-@use '../scale';
-
-@mixin stack($row-gap: scale.space()) {
-  --row-gap: #{$row-gap};
-
+@mixin stack {
   row-gap: var(--row-gap);
   list-style: none; // 1
 
@@ -10,12 +6,11 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: start;
   }
 
   @supports not (gap: 1rem) {
     & > * {
-      --spacer: #{$row-gap};
+      --spacer: var(--row-gap);
       margin-block: 0;
     }
 

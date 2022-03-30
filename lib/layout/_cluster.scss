@@ -1,9 +1,4 @@
-@use '../scale';
-
-@mixin cluster($row-gap: scale.space(200), $col-gap: scale.space(200)) {
-  --row-gap: #{$row-gap};
-  --col-gap: #{$col-gap};
-
+@mixin cluster {
   display: flex;
   flex-wrap: wrap;
   row-gap: var(--row-gap);
