@@ -1,17 +1,28 @@
+@use 'sass:list';
 @use 'sass:math';
 @use 'sass:map';
 
 $ratio: 1.15 !default;
+$major-ratio: $ratio !default;
+$minor-ratio: $ratio !default;
 $base: 1rem !default;
-$precision: .05;
+$precision: .05 !default;
 
 @function round($value, $precision: $precision) {
   $multiplier: math.div(1, $precision);
   @return math.div(math.round($value * $multiplier), $multiplier);
 }
 
-@function scale($index, $base: $base, $ratio: $ratio) {
-  @return round($base * math.pow($ratio, $index));
+@function select-ratio($power) {
+  @if $power < 0 {
+    @return $minor-ratio;
+  }
+
+  @return $major-ratio;
+}
+
+@function scale($power, $base: $base, $ratio: select-ratio($power)) {
+  @return round($base * math.pow($ratio, $power));
 }
 
 $size-100: scale(-3) !default;
