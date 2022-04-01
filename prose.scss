@@ -1,0 +1,23 @@
+:where(:root) {
+  --prose-size: 65ch;
+  --prose-spacer: 1rem;
+  --prose-spacer-small: .5rem;
+  --prose-spacer-large: 1.5rem;
+}
+
+// Root character size gives more flexibility in controlling inline size
+// of text which has variable font size, e.g. paragraphs and headings,
+// one next to another
+@supports (inline-size: 1rch) {
+  :where(:root) {
+    --prose-size: 65rch;
+  }
+}
+
+.prose * + * {
+  margin-block-start: var(--prose-spacer, var(--spacer));
+}
+
+.prose:where(:not(.fluid)) {
+  inline-size: var(--prose-size);
+}
