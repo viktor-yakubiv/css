@@ -64,33 +64,33 @@ $heading-line-height: 1.25;
 }
 
 .display {
-  --font-size-large: #{$display-large-font-size};
-  --font-size-medium: #{$display-medium-font-size};
-  --font-size-small: #{$display-small-font-size};
+  --font-size-large: var(--size-900, #{scale.size(900)});
+  --font-size-medium: var(--size-800, #{scale.size(800)});
+  --font-size-small: var(--size-700, #{scale.size(700)});
 }
 
 .headline {
-  --font-size-large: #{$headline-large-font-size};
-  --font-size-medium: #{$headline-medium-font-size};
-  --font-size-small: #{$headline-small-font-size};
+  --font-size-large: var(--size-600, #{scale.size(600)});
+  --font-size-medium: var(--size-500, #{scale.size(400)});
+  --font-size-small: var(--size-400, #{scale.size(200)});
 }
 
 .title {
-  --font-size-large: #{$title-large-font-size};
-  --font-size-medium: #{$title-medium-font-size};
-  --font-size-small: #{$title-small-font-size};
+  --font-size-large: var(--size-600, #{scale.size(600)});
+  --font-size-medium: var(--size-500, #{scale.size(500)});
+  --font-size-small: var(--size-400, #{scale.size(400)});
 }
 
 .label {
-  --font-size-large: #{$label-large-font-size};
-  --font-size-medium: #{$label-medium-font-size};
-  --font-size-small: #{$label-small-font-size};
+  --font-size-large: var(--size-600, #{scale.size(600)});
+  --font-size-medium: var(--size-400, #{scale.size(400)});
+  --font-size-small: var(--size-300, #{scale.size(200)});
 }
 
 .body {
-  --font-size-large: #{$body-large-font-size};
-  --font-size-medium: #{$body-medium-font-size};
-  --font-size-small: #{$body-small-font-size};
+  --font-size-large: var(--size-600, #{scale.size(600)});
+  --font-size-medium: var(--size-400, #{scale.size(400)});
+  --font-size-small: var(--size-300, #{scale.size(300)});
 }
 
 /**
