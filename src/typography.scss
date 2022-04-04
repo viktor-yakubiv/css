@@ -64,33 +64,33 @@ $heading-line-height: 1.25;
 }
 
 .display {
-  --font-size-large: $display-large-font-size;
-  --font-size-medium: $display-medium-font-size;
-  --font-size-small: $display-small-font-size;
+  --font-size-large: #{$display-large-font-size};
+  --font-size-medium: #{$display-medium-font-size};
+  --font-size-small: #{$display-small-font-size};
 }
 
 .headline {
-  --font-size-large: $headline-large-font-size;
-  --font-size-medium: $headline-medium-font-size;
-  --font-size-small: $headline-small-font-size;
+  --font-size-large: #{$headline-large-font-size};
+  --font-size-medium: #{$headline-medium-font-size};
+  --font-size-small: #{$headline-small-font-size};
 }
 
 .title {
-  --font-size-large: $title-large-font-size;
-  --font-size-medium: $title-medium-font-size;
-  --font-size-small: $title-small-font-size;
+  --font-size-large: #{$title-large-font-size};
+  --font-size-medium: #{$title-medium-font-size};
+  --font-size-small: #{$title-small-font-size};
 }
 
 .label {
-  --font-size-large: $label-large-font-size;
-  --font-size-medium: $label-medium-font-size;
-  --font-size-small: $label-small-font-size;
+  --font-size-large: #{$label-large-font-size};
+  --font-size-medium: #{$label-medium-font-size};
+  --font-size-small: #{$label-small-font-size};
 }
 
 .body {
-  --font-size-large: $body-large-font-size;
-  --font-size-medium: $body-medium-font-size;
-  --font-size-small: $body-small-font-size;
+  --font-size-large: #{$body-large-font-size};
+  --font-size-medium: #{$body-medium-font-size};
+  --font-size-small: #{$body-small-font-size};
 }
 
 /**
