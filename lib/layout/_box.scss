@@ -22,8 +22,4 @@
   :where(&) {
     display: block; // 2
   }
-
-  @supports not (padding-block:  1rem) {
-    padding: $padding-block $padding-inline;
-  }
 }

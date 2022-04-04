@@ -9,18 +9,4 @@
   row-gap: $row-gap;
   column-gap: $col-gap;
   list-style: none;
-
-  @supports not (gap: 1rem 1rem) {
-    & > * {
-      margin-block-end: $row-gap;
-      margin-inline-end: $col-gap;
-    }
-  }
-
-  @supports not (margin-inline-end: 1rem) {
-    & > * {
-      margin-right: $col-gap;
-      margin-bottom: $row-gap;
-    }
-  }
 }

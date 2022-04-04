@@ -1,9 +1,9 @@
-@use '../scale';
+@use 'scale';
 
 @mixin icon(
   $size: 0px,
   $outset: 0px,
-  $space: var(--col-gap, #{space(200)}),
+  $space: var(--col-gap, var(--space-200, scale.space(200))),
 ) {
   --inline-space: #{$space};
   --outset: #{$outset};
