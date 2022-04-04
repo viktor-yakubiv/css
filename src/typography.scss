@@ -1,4 +1,4 @@
-@use 'scale' as *;
+@use 'lib/scale';
 
 $font-family-plain: system-ui, sans-serif !default;
 $font-family-brand: $font-family-plain !default;

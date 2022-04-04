@@ -16,6 +16,6 @@
   "scripts": {
     "postinstall": "node ./bin build",
     "build": "node ./bin build",
-    "dev": "sass --no-source-map --watch .:."
+    "dev": "sass --no-source-map --load-path . --load-path lib --watch src:."
   }
 }
