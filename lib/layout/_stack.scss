@@ -1,5 +1,7 @@
+@use 'utils' as *;
+
 @mixin stack {
-  row-gap: var(--row-gap);
+  row-gap: var-options(--row-gap, --stack-row-gap, --theme-row-gap);
   list-style: none; // 1
 
   @supports (gap: 1rem) {
