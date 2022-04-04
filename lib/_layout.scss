@@ -1,0 +1,148 @@
+@use 'scale';
+@use 'utils' as *;
+
+// 1. When applied to the list, removes the list style
+@mixin stack {
+  list-style: none; // 1
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  row-gap: var-options(--row-gap, --stack-row-gap, --theme-row-gap);
+}
+
+// 1. Reset marker if applied to a list item
+// 2. Introduces block layout unless said it's something different
+@mixin box {
+  $padding-block: var-options(
+    --inset-block,
+    --box-inset-block,
+    --theme-inset-block,
+  );
+
+  $padding-inline: var-options(
+    --inset-inline,
+    --box-inset-inline,
+    --theme-inset-inline,
+  );
+
+  padding-block: $padding-block;
+  padding-inline: $padding-inline;
+  list-style: none; // 1
+
+  :where(&) {
+    display: block; // 2
+  }
+}
+
+@mixin cluster {
+  $row-gap: var-options(--row-gap, --cluster-row-gap, --theme-row-gap);
+  $col-gap: var-options(--col-gap, --cluster-col-gap, --theme-col-gap);
+
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: $row-gap;
+  column-gap: $col-gap;
+  list-style: none;
+}
+
+@mixin sidebar($size: 0) {
+  &:where(.with) {
+    @if $size > 0 {
+      --sidebar-size: #{$size};
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: var(--row-gap);
+    column-gap: var(--col-gap);
+  }
+
+  &:where(.with) > :where(:not(#{&})) {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: 50%;
+
+    @supports not (min-inline-size: 50%) {
+      min-width: 50%;
+    }
+  }
+
+  &:where(.with) > & {
+    flex-basis: var(--sidebar-size);
+    flex-grow: 1;
+  }
+}
+
+@mixin switcher($breakpoint: 0) {
+  @if $breakpoint > 0 {
+    --switcher-breakpoint: #{$breakpoint};
+  }
+
+  $row-gap: var-options(--row-gap, --switcher-row-gap, --theme-row-gap);
+  $col-gap: var-options(--col-gap, --switcher-col-gap, --theme-col-gap);
+
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: $row-gap;
+  column-gap: $col-gap;
+
+  & > * {
+    flex-basis: calc((var(--switcher-breakpoint) - 100%) * 999);
+    flex-grow: 1;
+  }
+}
+
+@mixin icon(
+  $size: 0px,
+  $outset: 0px,
+  $space: var(--col-gap, var(--space-200, scale.space(200))),
+) {
+  --inline-space: #{$space};
+  --outset: #{$outset};
+
+  @if $size > 0 {
+    --icon-size: #{$size};
+  }
+
+  display: inline-block;
+  inline-size: var(--icon-size, calc(.75em + 2 * var(--outset)));
+  block-size: var(--icon-size, calc(.75em + 2 * var(--outset)));
+  margin-inline: calc(-1 * var(--outset));
+  margin-block: calc(var(--space) - var(--outset));
+  color: var(--icon-color, inherit);
+  fill: currentColor;
+
+  &:first-child {
+    margin-inline-start: calc(-1 * var(--outset));
+  }
+
+  &:last-child {
+    margin-inline-end: calc(-1 * var(--outset));
+  }
+
+  @supports (inline-size: 1cap) {
+    inline-size: var(--icon-size, calc(1cap + 2 * var(--outset)));
+    block-size: var(--icon-size, calc(1cap + 2 * var(--outset)));
+  }
+}
+
+@mixin visually-hidden($focusable: false) {
+  $suffix: '';
+
+  @if $focusable {
+    $suffix: ':not(:focus):not(:focus-within)';
+  }
+
+  &#{$suffix} {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}
