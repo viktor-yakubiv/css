@@ -5,8 +5,13 @@
 $ratio: 1.15 !default;
 $major-ratio: $ratio !default;
 $minor-ratio: $ratio !default;
+
 $base: 1rem !default;
 $precision: .05 !default;
+
+$lower-clamp-point: math.div(960px, 16px) * $base !default;
+$higher-clamp-point: null !default;
+$viewport-unit: 1vw;
 
 @function round($value, $precision: $precision) {
   $multiplier: math.div(1, $precision);
@@ -27,6 +32,26 @@ $precision: .05 !default;
 
 @function value($power, $base: $base, $ratio: select-ratio($power)) {
   @return round($base * math.pow($ratio, $power));
+}
+
+@function range(
+  $min-value,
+  $max-value,
+  $lower-clamp-point: $lower-clamp-point,
+  $higher-clamp-point: $higher-clamp-point,
+  $viewport-unit: $viewport-unit,
+) {
+  @if $higher-clamp-point == null {
+    $factor: math.div($min-value, $lower-clamp-point);
+    $value: round($factor * 100 * $viewport-unit);
+    @return clamp(#{$min-value}, #{$value}, #{$max-value});
+  }
+
+  // f(x) = ax + b = y, where y is size and x is viewport range
+  $a: math.div($max-value - $min-value, $higher-clamp-point - $lower-clamp-point);
+  $b: $a * $min-value - $lower-clamp-point;
+
+  @return clamp(#{$min-value}, #{$b} + #{$a * 100 * $viewport-unit}, #{$max-value});
 }
 
 $size-100: value(-3) !default;

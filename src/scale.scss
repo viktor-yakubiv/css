@@ -1,3 +1,4 @@
+@use 'lib/scale';
 /*!
  * Scale
  *
@@ -5,7 +6,8 @@
  *
  * Size scale is designed to use for scaling text and icons.
  * Space scale is designed to use for scaling margin, padding,
- * gap (grid and flexbox gap) or any other non-textual whitespace.
+ * gap or any other non-textual white space.
+ * Stroke scale is designed for borders, outline, underline etc.
  *
  * 400 is assumed to be default, similar to the normal font weight for text.
  * The scale was designed based on this assumption, starting from 400
@@ -14,7 +16,48 @@
  * The naming convention intentionally presumes possibility
  * to create intermediate options like `--size-450: 1.125rem;`
  * but those are recommended be avoided unless necessary.
+ *
+ * The scale is crafted based on s=rⁿ formula, where:
+ * - `s` is the final size
+ * - `r` means ratio
+ * - `n` is an integer scale power
+ *
+ * For the scale below,
+ * - ratio was taken #{scale.$ratio}, as the most optimal to produce small numbers;
+ * - powers are Fibonacci numbers between 1 and 13, including inverted;
+ * - afterwards, each result was shortened to precision=0.05
+ *   to keep the numbers nice and short.
+ *
+ * Scale is made fluid and depended on the screen size
+ * starting growing from #{scale.$lower-clamp-point} width.
  */
-@use 'lib/scale';
 
-@include scale.define();
+:where(:root) {
+  --stroke-100: #{scale.value(-21)};
+  --stroke-200: #{scale.value(-13)};
+  --stroke-300: #{scale.value(-8)};
+}
+
+:where(:root) {
+  --space-100: #{scale.value(-8)};
+  --space-200: #{scale.value(-5)};
+  --space-300: #{scale.value(-2)};
+  --space-400: #{scale.value(0)};
+  --space-500: #{scale.value(2)};
+  --space-600: #{scale.range(scale.value(3), scale.value(5))};
+  --space-700: #{scale.range(scale.value(5), scale.value(8))};
+  --space-800: #{scale.range(scale.value(8), scale.value(13))};
+  --space-900: #{scale.range(scale.value(13), scale.value(21))};
+}
+
+:where(:root) {
+  --size-100: #{scale.value(-3)};
+  --size-200: #{scale.value(-2)};
+  --size-300: #{scale.value(-1)};
+  --size-400: #{scale.value(0)};
+  --size-500: #{scale.value(1)};
+  --size-600: #{scale.range(scale.value(2), scale.value(3))};
+  --size-700: #{scale.range(scale.value(3), scale.value(5))};
+  --size-800: #{scale.range(scale.value(5), scale.value(8))};
+  --size-900: #{scale.range(scale.value(8), scale.value(13))};
+}
