@@ -13,6 +13,7 @@ $lower-clamp-point: math.div(960px, 16px) * $base !default;
 $higher-clamp-point: null !default;
 $viewport-unit: 1vw;
 
+
 @function round($value, $precision: $precision) {
   $multiplier: math.div(1, $precision);
   @return math.div(math.round($value * $multiplier), $multiplier);
@@ -52,94 +53,4 @@ $viewport-unit: 1vw;
   $b: $a * $min-value - $lower-clamp-point;
 
   @return clamp(#{$min-value}, #{$b} + #{$a * 100 * $viewport-unit}, #{$max-value});
-}
-
-$size-100: value(-3) !default;
-$size-200: value(-2) !default;
-$size-300: value(-1) !default;
-$size-400: value(0) !default;
-$size-500: value(1) !default;
-$size-600: value(3) !default;
-$size-700: value(5) !default;
-$size-800: value(8) !default;
-$size-900: value(13) !default;
-
-$size: (
-  100: $size-100,
-  200: $size-200,
-  300: $size-300,
-  400: $size-400,
-  500: $size-500,
-  600: $size-600,
-  700: $size-700,
-  800: $size-800,
-  900: $size-900,
-) !default;
-
-$space-100: value(-8) !default;
-$space-200: value(-5) !default;
-$space-300: value(-2) !default;
-$space-400: value(0) !default;
-$space-500: value(1) !default;
-$space-600: value(3) !default;
-$space-700: value(5) !default;
-$space-800: value(8) !default;
-$space-900: value(13) !default;
-
-$space: (
-  100: $space-100,
-  200: $space-200,
-  300: $space-300,
-  400: $space-400,
-  500: $space-500,
-  600: $space-600,
-  700: $space-700,
-  800: $space-800,
-  900: $space-900,
-) !default;
-
-$stroke-100: value(-21) !default;
-$stroke-200: value(-13) !default;
-$stroke-300: value(-8) !default;
-
-$stroke: (
-  100: $stroke-100,
-  200: $stroke-200,
-  300: $stroke-300,
-) !default;
-
-@function size($index: 400) {
-  @return map.get($size, $index);
-}
-
-@function space($index: 400) {
-  @return map.get($size, $index);
-}
-
-@function stroke($index: 400) {
-  @return map.get($stroke, $index);
-}
-
-// Global scale definition
-
-@mixin export-map($map, $prefix) {
-  @each $index, $value in $map {
-    --#{$prefix}-#{$index}: #{$value};
-  }
-}
-
-@mixin define {
-  @at-root :root {
-    /* Scale */
-    @for $i from 0 through 3 {
-      --scale-#{$i}: #{round(math.pow($ratio, $i))};
-    }
-    @for $i from 1 through -3 {
-      --scale-#{$i}: #{round(math.pow($ratio, $i))};
-    }
-
-    @include export-map($size, 'size');
-    @include export-map($space, 'space');
-    @include export-map($stroke, 'stroke');
-  }
 }
