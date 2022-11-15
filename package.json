@@ -9,7 +9,11 @@
   "author": "Viktor Yakubiv (www.yakubiv.com)",
   "license": "MIT",
   "devDependencies": {
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "stylelint": "^14.15.0",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-standard": "^29.0.0",
+    "stylelint-config-standard-scss": "^6.1.0"
   },
   "scripts": {
     "dev": "sass --no-source-map --load-path . --watch src:."

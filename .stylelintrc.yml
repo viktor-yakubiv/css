@@ -1,0 +1,37 @@
+extends:
+  - stylelint-config-standard
+  - stylelint-config-recess-order
+
+rules:
+  # General
+  indentation: tab
+  max-empty-lines: 2
+  max-line-length: 80
+
+  # Empty lines
+  selector-list-comma-newline-after: always-multi-line
+  at-rule-empty-line-before:
+    - always
+    - except:
+        - blockless-after-same-name-blockless
+        - first-nested
+
+  # Strings and Numbers
+  number-leading-zero: never
+  string-quotes: single
+
+  # Colors
+  hue-degree-notation: number
+  alpha-value-notation: number
+
+  # Other
+  no-duplicate-selectors: null
+  no-irregular-whitespace: null
+
+overrides:
+  -
+    files: ['*.scss', '**/*.scss']
+    extends: stylelint-config-standard-scss
+  - files: '**/space.css'
+    rules:
+      max-line-length: null
