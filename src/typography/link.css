@@ -1,0 +1,57 @@
+/* Color */
+
+:link, :visited {
+  color: var(--link-color, inherit);
+  transition:
+    color var(--duration-100, 50ms),
+    box-shadow var(--duration-100, 50ms),
+    border-radius var(--duration-100, 50ms);
+}
+
+:where(:link, :visited):hover {
+  color: var(--link-hover-color, var(--link-focus-color));
+}
+
+:where(:link, :visited):focus {
+  color: var(--link-focus-color, var(--link-hover-color));
+}
+
+:where(:link, :visited):active {
+  color: var(--link-active-color);
+}
+
+/**
+ * Decoration
+ *
+ * The decoration is done with box-shadow because
+ * of the rendering features of underline — the line omits
+ * descending letters and spaces.
+ *
+ * 1.  The overlapping decoration color is set to transparent
+ *     rather than current color due to potential accessibility issues.
+ */
+:link, :visited {
+  text-decoration: none;
+  padding-inline: var(--link-outset-inline, .15ch);
+  margin-inline: calc(-1 * var(--link-outset-inline, .15ch));
+  box-shadow:
+    inset
+    0
+    calc(-1 * (var(--link-underline-size, .15em) + var(--link-underline-overlap, 0px)))
+    var(--link-decoration-color, transparent); /* 1 */
+}
+
+:where(:link, :visited):is(:hover, :focus) {
+  --link-underline-size: 2em;
+  border-radius: var(--link-border-radius, var(--link-outset-inline, .15ch));
+}
+
+@supports (height: 1lh) and (height: 1cap) {
+  :link, :visited {
+    --link-underline-size: calc((1lh - 1cap) / 2 + var(--link-underline-overlap, 0px));
+  }
+
+  :where(:link, :visited):is(:hover, :focus) {
+    --link-underline-size: 1lh;
+  }
+}

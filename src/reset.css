@@ -1,0 +1,9 @@
+:root {
+  block-size: 100%;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  min-block-size: 100%;
+}

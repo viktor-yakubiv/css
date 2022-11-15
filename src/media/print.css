@@ -1,0 +1,62 @@
+/* Definitions */
+
+@page {
+  margin-block: 1.5cm;
+  margin-inline: 2.5cm 1cm;
+  size: A4;
+}
+
+:root {
+  --highlight-color: transparent;
+}
+
+
+/* Typography */
+
+:root {
+  font-size: 10pt;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.15rem;
+  line-height: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+:link,
+:visited {
+  text-decoration: underline;
+}
+
+
+/* Spacing & Layout */
+
+body {
+  padding: 0;
+  inline-size: max-content;
+  max-inline-size: 100%;
+}
+
+main {
+  display: block;
+}
+
+main > * + * {
+  margin-block-start: var(--space-600);
+}
+
+
+/* Custom */
+
+.screen:where(.only) {
+  display: none;
+}

@@ -1,0 +1,66 @@
+/**
+ * Color values were constructed from LCH and downgraded to other standards.
+ * The conversion was done with the help of postcss-lab-function plugin.
+ */
+
+:where(:root) {
+  --text-color: var(--major-text-color);
+  --major-text-color: rgb(0 0 0 / .87);
+  --minor-text-color: rgb(0 0 0 / .6);
+  --major-icon-color: var(--major-text-color);
+  --minor-icon-color: var(--minor-text-color);
+  --background-color: rgb(255 255 255);
+  --highlight-color: rgb(57 110 255 / .25);
+  --selection-color: rgb(110 143 255 / .2);
+  --link-active-color: rgb(0 12 62 / .87);
+  --link-decoration-color: var(--highlight-color);
+  --outline-color: rgb(0 0 0 / .12);
+}
+
+@supports (color: color(display-p3 0 0 0)) {
+  :where(:root) {
+    --background-color: color(display-p3 1 1 1);
+    --highlight-color: color(display-p3 .26 .41 1 / .25);
+    --selection-color: color(display-p3 .45 .55 1 / .2);
+    --link-active-color: color(display-p3 0 .04 .24 / .87);
+  }
+}
+
+@supports (color: lch(0% 0 0)) {
+  :where(:root) {
+    --background-color: lch(100% 0 290);
+    --highlight-color: lch(50% 100 290 / .25);
+    --selection-color: lch(60% 100 290 / .2);
+    --link-active-color: lch(5% 100 290 / .87);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(:root) {
+    --background-color: rgb(17 16 24);
+    --major-text-color: rgb(255 255 255 / .9);
+    --minor-text-color: rgb(255 255 255 / .68);
+    --highlight-color: rgb(57 110 255 / .35);
+    --link-color: rgb(245 249 255 / .9);
+    --link-active-color: rgb(227 224 255 / .9);
+    --outline-color: rgb(255 255 255 / .12);
+  }
+
+  @supports (color: color(display-p3 0 0 0)) {
+    :where(:root) {
+      --background-color: color(display-p3 .07 .06 .09);
+      --highlight-color: color(display-p3 .26 .41 1 / .35);
+      --link-color: color(display-p3 .96 .98 1 / .9);
+      --link-active-color: color(display-p3 .89 .88 1 / .9);
+    }
+  }
+
+  @supports (color: lch(0% 0 0)) {
+    :where(:root) {
+      --background-color: lch(5% 5 290);
+      --highlight-color: lch(50% 100 290 / .35);
+      --link-color: lch(95% 100 290 / .9);
+      --link-active-color: lch(90% 100 290 / .9);
+    }
+  }
+}

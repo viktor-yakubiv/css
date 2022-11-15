@@ -1,0 +1,8 @@
+:where(:root) {
+  background-color: var(--background-color, white);
+  color: var(--text-color, black);
+}
+
+::selection {
+  background-color: var(--selection-color);
+}
