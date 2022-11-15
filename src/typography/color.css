@@ -1,6 +1,6 @@
 :where(:root) {
-	background-color: var(--background-color, white);
 	color: var(--text-color, black);
+	background-color: var(--background-color, white);
 }
 
 ::selection {

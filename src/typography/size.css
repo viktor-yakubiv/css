@@ -51,8 +51,8 @@ h6 {
 
 :where(hgroup) p {
 	font-size: var(--size-500);
-	line-height: 1.5rem;
 	font-weight: 300;
+	line-height: 1.5rem;
 }
 
 :where(hgroup h1) + p {

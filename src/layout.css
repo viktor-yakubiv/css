@@ -10,7 +10,7 @@
  */
 
 .hidden:where(.visually:not(.focusable)),
-.hidden:where(.visually.focusable:not(:focus):not(:focus-within)) {
+.hidden:where(.visually.focusable:not(:focus, :focus-within)) {
 	position: absolute;
 	width: 1px;
 	height: 1px;

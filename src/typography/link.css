@@ -31,24 +31,32 @@
  *		 rather than current color due to potential accessibility issues.
  */
 :link, :visited {
-	text-decoration: none;
 	padding-inline: var(--link-outset-inline, .15ch);
 	margin-inline: calc(-1 * var(--link-outset-inline, .15ch));
+	text-decoration: none;
 	box-shadow:
 		inset
 		0
-		calc(-1 * (var(--link-underline-size, .15em) + var(--link-underline-overlap, 0px)))
+		calc(
+			-1 * (var(--link-underline-size, .15em) +
+			var(--link-underline-overlap, 0px))
+		)
 		var(--link-decoration-color, transparent); /* 1 */
 }
 
 :where(:link, :visited):is(:hover, :focus) {
 	--link-underline-size: 2em;
+
 	border-radius: var(--link-border-radius, var(--link-outset-inline, .15ch));
 }
 
 @supports (height: 1lh) and (height: 1cap) {
 	:link, :visited {
-		--link-underline-size: calc((1lh - 1cap) / 2 + var(--link-underline-overlap, 0px));
+		--link-underline-size:
+			calc(
+				(1lh - 1cap) / 2 +
+				var(--link-underline-overlap, 0px)
+			);
 	}
 
 	:where(:link, :visited):is(:hover, :focus) {

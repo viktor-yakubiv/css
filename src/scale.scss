@@ -1,4 +1,5 @@
 @use 'lib/scale';
+
 /*!
  * Scale
  *
@@ -23,9 +24,10 @@
  * - `n` is an integer scale power
  *
  * For the scale below,
- * - ratio was taken #{scale.$ratio}, as the most optimal to produce small numbers;
+ * - ratio was taken #{scale.$ratio},
+ *   as the most optimal to produce small numbers;
  * - powers are Fibonacci numbers between 1 and 13, including inverted;
- * - afterwards, each result was shortened to precision=0.05
+ * - afterwards, each result was shortened to precision=#{scale.$precision}
  *	 to keep the numbers nice and short.
  *
  * Scale is made fluid and depended on the screen size

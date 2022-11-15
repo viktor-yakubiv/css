@@ -11,12 +11,10 @@
 	--minor-icon-color: var(--minor-text-color);
 	--background-color: rgb(255 255 255);
 	--highlight-color: lch(50% 100 290 / .25);
-	--selection-color: rgb(110 143 255 / .2);
+	--selection-color: lch(60% 100 290 / .2);
 	--link-active-color: lch(5% 100 290 / .87);
 	--link-decoration-color: var(--highlight-color);
 	--outline-color: rgb(0 0 0 / .12);
-	--background-color: lch(100% 0 290);
-	--selection-color: lch(60% 100 290 / .2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,10 +22,9 @@
 		--background-color: lch(5% 5 290);
 		--major-text-color: rgb(255 255 255 / .9);
 		--minor-text-color: rgb(255 255 255 / .68);
-		--highlight-color: rgb(57 110 255 / .35);
+		--highlight-color: lch(50% 100 290 / .35);
 		--link-color: lch(95% 100 290 / .9);
 		--link-active-color: lch(90% 100 290 / .9);
 		--outline-color: rgb(255 255 255 / .12);
-		--highlight-color: lch(50% 100 290 / .35);
 	}
 }
