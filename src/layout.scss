@@ -97,6 +97,7 @@
   @include visually-hidden;
 }
 
+// FIXME: This won't ever work since previous always matches
 .hidden:where(.visually.focusable) {
   @include visually-hidden($focusable: true);
 }
