@@ -10,11 +10,11 @@
  */
 
 * {
-  margin-block: 0;
+	margin-block: 0;
 }
 
 * + * {
-  margin-block-start: var(--space-400);
+	margin-block-start: var(--space-400);
 }
 
 :where(body) {
@@ -23,44 +23,44 @@
 }
 
 * + :where(li) {
-  margin-block-start: var(--space-300);
+	margin-block-start: var(--space-300);
 }
 
 :where(li) > :where(ol, ul, p) * + * {
-  margin-block-start: var(--space-300);
+	margin-block-start: var(--space-300);
 }
 
 :where(h1, h2, h3, h4, h5, h6, hgroup, header) + * {
-  margin-block-start: var(--space-300);
+	margin-block-start: var(--space-300);
 }
 
 :where(hgroup) > * + * {
-  margin-block-start: var(--space-100);
+	margin-block-start: var(--space-100);
 }
 
 /* Dynamic Spacing */
 
 :where(:root) {
-  --section-space: var(--space-800);
+	--section-space: var(--space-800);
 }
 
 :where(:not(h1, h2, h3, h4, h5, h6, hgroup, header)) + :where(article, section, nav, aside),
 :where(article, section, nav, aside) + * {
-  margin-block-start: var(--section-space, var(--space-400));
+	margin-block-start: var(--section-space, var(--space-400));
 }
 
 :where(article, section, nav, aside) > * {
-  --section-space: var(--space-700);
+	--section-space: var(--space-700);
 }
 
 :where(article, section, nav, aside) :where(article, section, nav, aside) > * {
-  --section-space: var(--space-600);
+	--section-space: var(--space-600);
 }
 
 :where(article, section, nav, aside) :where(article, section, nav, aside) :where(article, section, nav, aside) > * {
-  --section-space: var(--space-500);
+	--section-space: var(--space-500);
 }
 
 :where(article, section, nav, aside) :where(article, section, nav, aside) :where(article, section, nav, aside) :where(article, section, nav, aside) > * {
-  --section-space: var(--space-400);
+	--section-space: var(--space-400);
 }
