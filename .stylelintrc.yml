@@ -42,11 +42,11 @@ overrides:
             - inside-single-line-block
 
   - files: 'lib/**/*.scss'
-  	rules:
-  		# variables may be inserted into custom properties
-			length-zero-no-unit: null
+    rules:
+      # variables may be inserted into custom properties
+      length-zero-no-unit: null
 
-			# redefining global functions is okay
+      # redefining global functions is okay
       scss/no-global-function-names: null
 
   - files: '**/space.css'
