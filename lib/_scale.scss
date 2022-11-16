@@ -15,42 +15,47 @@ $viewport-unit: 1vw;
 
 
 @function round($value, $precision: $precision) {
-  $multiplier: math.div(1, $precision);
-  @return math.div(math.round($value * $multiplier), $multiplier);
+	$multiplier: math.div(1, $precision);
+
+	@return math.div(math.round($value * $multiplier), $multiplier);
 }
 
 @function select-ratio($power) {
-  @if $power < 0 {
-    @return $minor-ratio;
-  }
+	@if $power < 0 {
+		@return $minor-ratio;
+	}
 
-  @return $major-ratio;
+	@return $major-ratio;
 }
 
 @function factor($power, $ratio: select-ratio($power)) {
-  @return round(math.pow($ratio, $power));
+	@return round(math.pow($ratio, $power));
 }
 
 @function value($power, $base: $base, $ratio: select-ratio($power)) {
-  @return round($base * math.pow($ratio, $power));
+	@return round($base * math.pow($ratio, $power));
 }
 
 @function range(
-  $min-value,
-  $max-value,
-  $lower-clamp-point: $lower-clamp-point,
-  $higher-clamp-point: $higher-clamp-point,
-  $viewport-unit: $viewport-unit,
+	$min-value,
+	$max-value,
+	$lower-clamp-point: $lower-clamp-point,
+	$higher-clamp-point: $higher-clamp-point,
+	$viewport-unit: $viewport-unit,
 ) {
-  @if $higher-clamp-point == null {
-    $factor: math.div($min-value, $lower-clamp-point);
-    $value: round($factor * 100 * $viewport-unit);
-    @return clamp(#{$min-value}, #{$value}, #{$max-value});
-  }
+	@if not $higher-clamp-point {
+		$factor: math.div($min-value, $lower-clamp-point);
+		$value: round($factor * 100 * $viewport-unit);
 
-  // f(x) = ax + b = y, where y is size and x is viewport range
-  $a: math.div($max-value - $min-value, $higher-clamp-point - $lower-clamp-point);
-  $b: $a * $min-value - $lower-clamp-point;
+		@return clamp(#{$min-value}, #{$value}, #{$max-value});
+	}
 
-  @return clamp(#{$min-value}, #{$b} + #{$a * 100 * $viewport-unit}, #{$max-value});
+	// f(x) = ax + b = y, where y is size and x is viewport range
+	$a: math.div(
+		$max-value - $min-value, // y1 - y0
+		$higher-clamp-point - $lower-clamp-point // x1 - x0
+	);
+	$b: $a * $min-value - $lower-clamp-point;
+
+	@return clamp(#{$min-value}, #{$b} + #{$a * 100 * $viewport-unit}, #{$max-value});
 }
