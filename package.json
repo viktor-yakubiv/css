@@ -1,7 +1,7 @@
 {
   "name": "@yakubiv/css",
   "version": "0.1.0",
-  "description": "CSS snippets",
+  "description": "Style library for personal websites and projects",
   "author": "Viktor Yakubiv (www.yakubiv.com)",
   "license": "MIT",
   "repository": "github:viktor-yakubiv/css",
