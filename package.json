@@ -2,12 +2,9 @@
   "name": "@yakubiv/css",
   "version": "0.1.0",
   "description": "CSS snippets",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/viktor-yakubiv/css.git"
-  },
   "author": "Viktor Yakubiv (www.yakubiv.com)",
   "license": "MIT",
+  "repository": "github:viktor-yakubiv/css",
   "devDependencies": {
     "sass": "^1.49.9",
     "stylelint": "^14.15.0",
