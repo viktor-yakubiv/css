@@ -28,7 +28,7 @@
  *   as the most optimal to produce small numbers;
  * - powers are Fibonacci numbers between 1 and 13, including inverted;
  * - afterwards, each result was shortened to precision=#{scale.$precision}
- *	 to keep the numbers nice and short.
+ *   to keep the numbers nice and short.
  *
  * Scale is made fluid and depended on the screen size
  * starting growing from #{scale.$lower-clamp-point} width.

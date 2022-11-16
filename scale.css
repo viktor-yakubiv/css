@@ -1,0 +1,62 @@
+/*!
+ * Scale
+ *
+ * Global scale for (font) sizing and spacing.
+ *
+ * Size scale is designed to use for scaling text and icons.
+ * Space scale is designed to use for scaling margin, padding,
+ * gap or any other non-textual white space.
+ * Stroke scale is designed for borders, outline, underline etc.
+ *
+ * 400 is assumed to be default, similar to the normal font weight for text.
+ * The scale was designed based on this assumption, starting from 400
+ * and increasing it for the higher numbers, and decreasing for the lower ones.
+ *
+ * The naming convention intentionally presumes possibility
+ * to create intermediate options like `--size-450: 1.125rem;`
+ * but those are recommended be avoided unless necessary.
+ *
+ * The scale is crafted based on s=rⁿ formula, where:
+ * - `s` is the final size
+ * - `r` means ratio
+ * - `n` is an integer scale power
+ *
+ * For the scale below,
+ * - ratio was taken 1.15,
+ *   as the most optimal to produce small numbers;
+ * - powers are Fibonacci numbers between 1 and 13, including inverted;
+ * - afterwards, each result was shortened to precision=0.05
+ *   to keep the numbers nice and short.
+ *
+ * Scale is made fluid and depended on the screen size
+ * starting growing from 60rem width.
+ */
+:where(:root) {
+	--stroke-100: .05rem;
+	--stroke-200: .15rem;
+	--stroke-300: .35rem;
+}
+
+:where(:root) {
+	--space-100: .35rem;
+	--space-200: .5rem;
+	--space-300: .75rem;
+	--space-400: 1rem;
+	--space-500: 1.3rem;
+	--space-600: clamp(1.5rem, 2.5vw, 2rem);
+	--space-700: clamp(2rem, 3.35vw, 3.05rem);
+	--space-800: clamp(3.05rem, 5.1vw, 6.15rem);
+	--space-900: clamp(6.15rem, 10.25vw, 18.8rem);
+}
+
+:where(:root) {
+	--size-100: .65rem;
+	--size-200: .75rem;
+	--size-300: .85rem;
+	--size-400: 1rem;
+	--size-500: 1.15rem;
+	--size-600: clamp(1.3rem, 2.15vw, 1.5rem);
+	--size-700: clamp(1.5rem, 2.5vw, 2rem);
+	--size-800: clamp(2rem, 3.35vw, 3.05rem);
+	--size-900: clamp(3.05rem, 5.1vw, 6.15rem);
+}
