@@ -5,6 +5,10 @@
   "author": "Viktor Yakubiv (www.yakubiv.com)",
   "license": "MIT",
   "repository": "github:viktor-yakubiv/css",
+  "main": "index.css",
+  "files": [
+    "**/*.css"
+  ],
   "devDependencies": {
     "sass": "^1.49.9",
     "stylelint": "^14.15.0",
