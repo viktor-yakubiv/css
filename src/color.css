@@ -1,52 +1,75 @@
-/**
- * Color values were constructed from LCH and downgraded to other standards.
- * The conversion was done with the help of postcss-lab-function plugin.
+/*!
+ * Global color palette
+ *
+ * Values are constructed using LCH and downgraded to DCI-P3 and sRGB
+ * with help of postcss-lab-function plugin.
+ * Shades of gray and semi-transparent tones of white and black
+ * are kept in sRGB since there is no need to generate more code.
+ *
+ * Negating @supports rule was used to preserve original grouping
+ * in a single place and downgrade only ones that are needed.
  */
 
 :where(:root) {
+	/* Text */
 	--text-color: var(--major-text-color);
 	--major-text-color: rgb(0 0 0 / .87);
 	--minor-text-color: rgb(0 0 0 / .6);
+
+	/* Icons */
+	--icon-color: var(--text-color);
 	--major-icon-color: var(--major-text-color);
 	--minor-icon-color: var(--minor-text-color);
-	--background-color: rgb(255 255 255);
-	--highlight-color: rgb(57 110 255 / .25);
-	--selection-color: rgb(110 143 255 / .2);
-	--link-active-color: rgb(0 12 62 / .87);
+
+	/* Links */
+	--link-active-color: lch(5% 100 290 / .87);
 	--link-decoration-color: var(--highlight-color);
+
+	/* Surface */
+	--background-color: lch(100% 0 290);
 	--outline-color: rgb(0 0 0 / .12);
+
+	/* States */
+	--highlight-color: lch(50% 100 290 / .25);
+	--selection-color: lch(60% 100 290 / .2);
 }
 
-@supports (color: color(display-p3 0 0 0)) {
+@media (prefers-color-scheme: dark) {
+	:where(:root) {
+		/* Text */
+		--major-text-color: rgb(255 255 255 / .9);
+		--minor-text-color: rgb(255 255 255 / .68);
+
+		/* Surface */
+		--background-color: lch(5% 5 290);
+		--outline-color: rgb(255 255 255 / .12);
+
+		/* States */
+		--highlight-color: lch(50% 100 290 / .35);
+
+		/* Links */
+		--link-color: lch(95% 100 290 / .9);
+		--link-active-color: lch(90% 100 290 / .9);
+	}
+}
+
+
+/**
+ * Regressive polyfills
+ *
+ * Values below are converted with the help of postcss-lab-function
+ * and placed manually.
+ */
+
+@supports not (color: lch(0% 0 0)) {
 	:where(:root) {
 		--background-color: color(display-p3 1 1 1);
 		--highlight-color: color(display-p3 .26 .41 1 / .25);
 		--selection-color: color(display-p3 .45 .55 1 / .2);
 		--link-active-color: color(display-p3 0 .04 .24 / .87);
 	}
-}
 
-@supports (color: lch(0% 0 0)) {
-	:where(:root) {
-		--background-color: lch(100% 0 290);
-		--highlight-color: lch(50% 100 290 / .25);
-		--selection-color: lch(60% 100 290 / .2);
-		--link-active-color: lch(5% 100 290 / .87);
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	:where(:root) {
-		--background-color: rgb(17 16 24);
-		--major-text-color: rgb(255 255 255 / .9);
-		--minor-text-color: rgb(255 255 255 / .68);
-		--highlight-color: rgb(57 110 255 / .35);
-		--link-color: rgb(245 249 255 / .9);
-		--link-active-color: rgb(227 224 255 / .9);
-		--outline-color: rgb(255 255 255 / .12);
-	}
-
-	@supports (color: color(display-p3 0 0 0)) {
+	@media (prefers-color-scheme: dark) {
 		:where(:root) {
 			--background-color: color(display-p3 .07 .06 .09);
 			--highlight-color: color(display-p3 .26 .41 1 / .35);
@@ -54,13 +77,22 @@
 			--link-active-color: color(display-p3 .89 .88 1 / .9);
 		}
 	}
+}
 
-	@supports (color: lch(0% 0 0)) {
+@supports not (color: color(display-p3 0 0 0)) {
+	:where(:root) {
+		--background-color: rgb(255 255 255);
+		--highlight-color: rgb(57 110 255 / .25);
+		--selection-color: rgb(110 143 255 / .2);
+		--link-active-color: rgb(0 12 62 / .87);
+	}
+
+	@media (prefers-color-scheme: dark) {
 		:where(:root) {
-			--background-color: lch(5% 5 290);
-			--highlight-color: lch(50% 100 290 / .35);
-			--link-color: lch(95% 100 290 / .9);
-			--link-active-color: lch(90% 100 290 / .9);
+			--background-color: rgb(17 16 24);
+			--highlight-color: rgb(57 110 255 / .35);
+			--link-active-color: rgb(227 224 255 / .9);
+			--link-color: rgb(245 249 255 / .9);
 		}
 	}
 }
