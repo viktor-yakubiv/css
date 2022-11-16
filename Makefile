@@ -1,6 +1,7 @@
 .PHONY=all
 all:
 	@make scale.css
+	@make lint
 
 lint:
 	npm x stylelint --fix '**/*.css'
