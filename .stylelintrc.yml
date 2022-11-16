@@ -29,9 +29,26 @@ rules:
   no-irregular-whitespace: null
 
 overrides:
-  -
-    files: ['*.scss', '**/*.scss']
+  - files: ['*.scss', '**/*.scss']
     extends: stylelint-config-standard-scss
+    rules:
+      scss/dollar-variable-empty-line-before:
+        - always
+        - except:
+            - first-nested
+          ignore:
+            - after-comment
+            - after-dollar-variable
+            - inside-single-line-block
+
+  - files: 'lib/**/*.scss'
+  	rules:
+  		# variables may be inserted into custom properties
+			length-zero-no-unit: null
+
+			# redefining global functions is okay
+      scss/no-global-function-names: null
+
   - files: '**/space.css'
     rules:
       max-line-length: null
