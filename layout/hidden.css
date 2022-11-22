@@ -1,5 +1,16 @@
 /**
- * Visually Hidden
+ * Hidden
+ *
+ * Removes element from the tree.
+ */
+
+[hidden] {
+	display: none;
+}
+
+
+/**
+ * Visually hidden
  *
  * Hides content from the display but preserves it for assistive technologies.
  * Can be hidden completely or visible when focused.
