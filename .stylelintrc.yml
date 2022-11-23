@@ -13,8 +13,10 @@ rules:
   at-rule-empty-line-before:
     - always
     - except:
-        - blockless-after-same-name-blockless
         - first-nested
+      ignore:
+        - blockless-after-same-name-blockless
+        - after-comment
 
   # Strings and Numbers
   number-leading-zero: never
