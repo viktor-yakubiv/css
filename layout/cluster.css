@@ -1,0 +1,17 @@
+/**
+ * Cluster
+ *
+ * Sets children to lay horizontally. If there is not enough space to fit all
+ * children, they break into another line. It also sets horizontal and vertical
+ * spacing between children.
+ *
+ * Details: https://every-layout.dev/layouts/cluster
+ */
+
+.cluster {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: var(--cluster-row-gap, var(--row-gap));
+	column-gap: var(--cluster-column-gap, var(--column-ga));
+	list-style: none;
+}

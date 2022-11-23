@@ -1,0 +1,48 @@
+/**
+ * Icon
+ *
+ * A layout designed specifically to inline pictograms to make them
+ * aligned with text properly.
+ *
+ * Configuration options:
+ *
+ * `--icon-size`
+ *   sets full size of image
+ *
+ * `--icon-outset`
+ *   enables negative margin making the picture pop a bit out from text;
+ *   useful when you have circular icons and want to correct visual alignment
+ *
+ *  `--icon-space`
+ *    controls space between the icon and the closes text;
+ *    In JSX it would be complete space, in pure HTML it can be added to
+ *    the space width.
+ *
+ * Details: https://every-layout.dev/layouts/icon
+ */
+
+.icon {
+	box-sizing: border-box;
+	display: inline-block;
+	inline-size: var(--icon-size, calc(.75em + 2 * var(--icon-outset, 0px)));
+	block-size: var(--icon-size, calc(.75em + 2 * var(--icon-outset, 0px)));
+	margin-block: calc(-1 * var(--icon-outset, 0px));
+	margin-inline: calc(var(--icon-space, 1ch) - var(--icon-outset, 0px));
+	color: var(--icon-color, inherit);
+	fill: currentcolor;
+}
+
+@supports (inline-size: 1cap) {
+	.icon {
+		inline-size: var(--icon-size, calc(1cap + 2 * var(--icon-outset, 0px)));
+		block-size: var(--icon-size, calc(1cap + 2 * var(--icon-outset, 0px)));
+	}
+}
+
+.icon:where(:first-child) {
+	margin-inline-start: calc(-1 * var(--icon-outset, 0px));
+}
+
+.icon:where(:last-child) {
+	margin-inline-end: calc(-1 * var(--icon-outset, 0px));
+}

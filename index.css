@@ -1,15 +1,7 @@
-/* Definitions */
-
 @import url('scale.css');
 @import url('color.css');
 
-
-/* Reset */
-
 @import url('reset.css');
-
-
-/* Typography */
 
 @import url('typography/font.css');
 @import url('typography/color.css');
@@ -18,13 +10,14 @@
 @import url('typography/link.css');
 @import url('typography/list.css');
 
-
-/* Layout */
-
-@import url('layout/index.css');
-
-
-/* Media */
+@import url('layout/box.css');
+@import url('layout/stack.css');
+@import url('layout/sidebar.css');
+@import url('layout/switcher.css');
+@import url('layout/cluster.css');
+@import url('layout/hidden.css');
+@import url('layout/icon.css');
+@import url('layout/fixtures.css');
 
 @import url('media/screen.css') screen;
 @import url('media/print.css') print;

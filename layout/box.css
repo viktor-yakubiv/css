@@ -1,0 +1,17 @@
+/**
+ * Box
+ *
+ * Defines a box layout with inset spacing.
+ *
+ * Details: https://every-layout.dev/layouts/box
+ *
+ * NOTE:
+ *   This does not apply background, color and outline
+ *   recommended in Every Layout as these are defined in a separate
+ *   coloring module.
+ */
+
+.box {
+	padding-block: var(--box-padding-block, var(--padding-block));
+	padding-inline: var(--box-padding-inline, var(--padding-inline));
+}

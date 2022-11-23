@@ -1,0 +1,14 @@
+/**
+ * Stack
+ *
+ * Sets the vertical spacing between its children.
+ *
+ * Details: https://every-layout.dev/layouts/stack
+ */
+
+.stack {
+	display: flex;
+	flex-direction: column;
+	gap: var(--stack-gap, var(--row-gap));
+	justify-content: start;
+}

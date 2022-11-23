@@ -1,0 +1,29 @@
+/**
+ * Sidebar
+ *
+ * Makes the sidebar to occupy requested space and the content (not a sidebar)
+ * to occupy the rest of space, i.e. creates wide content and a narrow sidebar.
+ * If there is not enough space for content, i.e. it is more narrow than 50%
+ * of the parent, the layout breaks and the sidebar is rendered before
+ * or after the content (depends on the order of HTML elements).
+ *
+ * Details: https://every-layout.dev/layouts/sidebar
+ */
+
+:has(> .sidebar) {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: var(--row-gap);
+	column-gap: var(--col-gap);
+}
+
+:has(> .sidebar) > :where(:not(.sidebar)) {
+	flex-basis: 0;
+	flex-grow: 999;
+	min-inline-size: 50%;
+}
+
+.sidebar {
+	flex-basis: var(--sidebar-inline-size);
+	flex-grow: 1;
+}

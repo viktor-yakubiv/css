@@ -1,0 +1,23 @@
+/**
+ * Switcher
+ *
+ * Toggles view between purely horizontal to purely vertical and vice versa
+ * based on threshold.
+ *
+ * If the threshold is not set, the layout is always purely vertical.
+ * It can be treated as a fallback to stack; but spacing does not fall back.
+ *
+ * Details: https://every-layout.dev/layouts/switcher
+ */
+
+.switcher {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: var(--switcher-row-gap, var(--row-gap));
+	column-gap: var(--switcher-column-gap, var(--column-gap));
+}
+
+.switcher > * {
+	flex-basis: calc((var(--switcher-threshold, 0px) - 100%) * 999);
+	flex-grow: 1;
+}

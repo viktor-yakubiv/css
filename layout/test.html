@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang=en>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<title>Layout Tests</title>
+<link rel=stylesheet href=index.css>
+
+<style>
+:root {
+	--cluster-row-gap: .5rem;
+	--cluster-column-gap: var(--cluster-row-gap);
+}
+
+:root {
+	font-family: system-ui;
+}
+
+:where(.cluster) {
+	outline: 1px solid blue;
+	outline-offset: 1px;
+}
+
+:where(.cluster) > * {
+	padding: 1rem;
+	outline: 1px solid red;
+}
+
+.cluster > * {
+	flex-grow: calc(50%);
+}
+</style>
+
+<h1>Layout Tests</h1>
+
+<section>
+	<h2>Cluster</h2>
+
+	<ul class=cluster>
+		<li>Quite Long Item</li>
+		<li>Not So Long Item</li>
+	</ul>
+
+	<ul class=cluster>
+		<li>Item 1</li>
+		<li>Item 2</li>
+		<li>Item 3</li>
+		<li>Item 4</li>
+		<li>Item 5</li>
+	</ul>
+</section>

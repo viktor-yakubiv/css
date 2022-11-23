@@ -1,0 +1,34 @@
+/*!
+ * Layout Fixtures
+ *
+ * Prevent most common side effects of layouts.
+ */
+
+
+/**
+ * Reset default styling if a layout used on a list
+ */
+
+:where(.box, .stack, .switcher, .cluster, :has(> .sidebar)) {
+	padding-left: 0;
+	list-style: none;
+}
+
+
+/**
+ * Remove global margin on any children
+ * to prevent weird spacing in flexible containers
+ */
+
+:where(.stack, .switcher, .cluster, :has(> .sidebar)) > * {
+	margin-block: 0; /* 3 */
+}
+
+
+/**
+ * Display block for Box layout if not set
+ */
+
+:where(.box) {
+	display: block; /* 4 */
+}
