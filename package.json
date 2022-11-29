@@ -1,6 +1,6 @@
 {
   "name": "@yakubiv/css",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Style library for personal websites and projects",
   "author": "Viktor Yakubiv (www.yakubiv.com)",
   "license": "MIT",
@@ -17,6 +17,6 @@
     "stylelint-config-standard-scss": "^6.1.0"
   },
   "peerDependencies": {
-  	"@csstools/normalize.css": "^12"
+    "@csstools/normalize.css": "^12"
   }
 }
