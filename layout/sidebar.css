@@ -14,7 +14,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	row-gap: var(--row-gap);
-	column-gap: var(--col-gap);
+	column-gap: var(--column-gap);
 }
 
 :has(> .sidebar) > :where(:not(.sidebar)) {

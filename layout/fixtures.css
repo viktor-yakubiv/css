@@ -9,8 +9,12 @@
  * Reset default styling if a layout used on a list
  */
 
-:where(.box, .stack, .switcher, .cluster, :has(> .sidebar)) {
+:where(ul, ol, menu):where(.stack, .switcher, .cluster, :has(> .sidebar)) {
 	padding-left: 0;
+	list-style: none;
+}
+
+:where(ul, ol, menu):where(.box) {
 	list-style: none;
 }
 

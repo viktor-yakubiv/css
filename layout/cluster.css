@@ -12,6 +12,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	row-gap: var(--cluster-row-gap, var(--row-gap));
-	column-gap: var(--cluster-column-gap, var(--column-ga));
+	column-gap: var(--cluster-column-gap, var(--column-gap));
 	list-style: none;
 }
