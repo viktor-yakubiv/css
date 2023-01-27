@@ -10,7 +10,8 @@
  * in a single place and downgrade only ones that are needed.
  */
 
-:where(:root) {
+:where(:root),
+:is(.light, .dark) {
 	/* Text */
 	--text-color: var(--major-text-color);
 	--major-text-color: rgb(0 0 0 / .87);
@@ -32,6 +33,23 @@
 	/* States */
 	--highlight-color: lch(50% 100 290 / .25);
 	--selection-color: lch(60% 100 290 / .2);
+}
+
+.dark {
+	/* Text */
+	--major-text-color: rgb(255 255 255 / .9);
+	--minor-text-color: rgb(255 255 255 / .68);
+
+	/* Surface */
+	--background-color: lch(5% 5 290);
+	--outline-color: rgb(255 255 255 / .12);
+
+	/* States */
+	--highlight-color: lch(50% 100 290 / .35);
+
+	/* Links */
+	--link-color: lch(95% 100 290 / .9);
+	--link-active-color: lch(90% 100 290 / .9);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,11 +80,19 @@
  */
 
 @supports not (color: lch(0% 0 0)) {
-	:where(:root) {
+	:where(:root),
+	:is(.light, .dark) {
 		--background-color: color(display-p3 1 1 1);
 		--highlight-color: color(display-p3 .26 .41 1 / .25);
 		--selection-color: color(display-p3 .45 .55 1 / .2);
 		--link-active-color: color(display-p3 0 .04 .24 / .87);
+	}
+
+	.dark {
+		--background-color: color(display-p3 .07 .06 .09);
+		--highlight-color: color(display-p3 .26 .41 1 / .35);
+		--link-color: color(display-p3 .96 .98 1 / .9);
+		--link-active-color: color(display-p3 .89 .88 1 / .9);
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -80,11 +106,19 @@
 }
 
 @supports not (color: color(display-p3 0 0 0)) {
-	:where(:root) {
+	:where(:root),
+	:is(.light, .dark) {
 		--background-color: rgb(255 255 255);
 		--highlight-color: rgb(57 110 255 / .25);
 		--selection-color: rgb(110 143 255 / .2);
 		--link-active-color: rgb(0 12 62 / .87);
+	}
+
+	.dark {
+		--background-color: rgb(17 16 24);
+		--highlight-color: rgb(57 110 255 / .35);
+		--link-active-color: rgb(227 224 255 / .9);
+		--link-color: rgb(245 249 255 / .9);
 	}
 
 	@media (prefers-color-scheme: dark) {
