@@ -9,6 +9,11 @@
  *    as well as headings and subheadings/subtitles
  */
 
+:where(:root) {
+	--body-padding-block: var(--space-600);
+	--body-padding-inline: var(--space-700);
+}
+
 * {
 	margin-block: 0;
 }
@@ -18,8 +23,8 @@
 }
 
 :where(body) {
-	padding-block: var(--space-600);
-	padding-inline: var(--space-700);
+	padding-block: var(--body-padding-block);
+	padding-inline: var(--body-padding-inline);
 }
 
 * + :where(li) {
