@@ -1,0 +1,11 @@
+@media not screen {
+	.\@screen {
+		display: none;
+	}
+}
+
+@media not print {
+	.\@print {
+		display: none;
+	}
+}
