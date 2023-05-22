@@ -1,0 +1,40 @@
+/**
+ * Break rules
+ *
+ * Those have effect in columns but mostly when printed.
+ * As on 22 May 2023, only Chrome respects break rules for printing
+ * but still better than noting.
+ *
+ * The rules are described as following:
+ *
+ * 1.	No single-line floating at the page sides
+ * 2.	Headings must be kept with the text after them
+ * 3.	Lists should be kept with headings or introductory paragraps before them
+ * 4.	No single list item floating at the page sides
+ * 5.	Definition titles should be kept with at least first description
+ */
+
+:root {
+	widows: initial; /* 1 */
+	orphans: initial; /* 1 */
+}
+
+h1, h2, h3, h4, h5, h6, hgroup {
+	break-after: avoid; /* 2 */
+}
+
+* + :is(ul, ol, dl) {
+	break-before: avoid-page; /* 3 */
+}
+
+li:where(:first-of-type) {
+	break-after: avoid-page; /* 4 */
+}
+
+li:where(:last-of-type) {
+	break-before: avoid-page; /* 4 */
+}
+
+:where(dt) + dd {
+	break-before: avoid; /* 5 */
+}
