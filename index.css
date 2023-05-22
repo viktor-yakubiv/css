@@ -18,6 +18,3 @@
 @import url('layout/hidden.css');
 @import url('layout/icon.css');
 @import url('layout/fixtures.css');
-
-@import url('media/screen.css') screen;
-@import url('media/print.css') print;

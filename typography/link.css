@@ -28,7 +28,10 @@
  * descending letters and spaces.
  *
  * 1.	The overlapping decoration color is set to transparent
- *		 rather than current color due to potential accessibility issues.
+ *   	rather than current color due to potential accessibility issues.
+ *   	While printing underline keeps using the current color.
+ *
+ * 2.	A regular underline is used for printing for increased contrast.
  */
 :link, :visited {
 	padding-inline: var(--link-outset-inline, .15ch);
@@ -61,5 +64,14 @@
 
 	:where(:link, :visited):is(:hover, :focus) {
 		--link-underline-size: 1lh;
+	}
+}
+
+@media print {
+	:link, :visited {
+		--link-underline-size: 0px;
+
+		text-decoration: underline;
+		text-decoration-color: var(--link-decoration-color, currentColor);
 	}
 }
