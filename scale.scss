@@ -52,6 +52,15 @@
 	--space-900: #{scale.range(scale.value(13), scale.value(21))};
 }
 
+@media print {
+	:root {
+		--space-600: #{scale.value(3)};
+		--space-700: #{scale.value(5)};
+		--space-800: #{scale.value(8)};
+		--space-900: #{scale.value(13)};
+	}
+}
+
 :where(:root) {
 	--size-100: #{scale.value(-3)};
 	--size-200: #{scale.value(-2)};
@@ -62,4 +71,13 @@
 	--size-700: #{scale.range(scale.value(3), scale.value(5))};
 	--size-800: #{scale.range(scale.value(5), scale.value(8))};
 	--size-900: #{scale.range(scale.value(8), scale.value(13))};
+}
+
+@media print {
+	:root {
+		--size-600: #{scale.value(2)};
+		--size-700: #{scale.value(3)};
+		--size-800: #{scale.value(5)};
+		--size-900: #{scale.value(8)};
+	}
 }

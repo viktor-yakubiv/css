@@ -49,6 +49,15 @@
 	--space-900: clamp(6.15rem, 10.25vw, 18.8rem);
 }
 
+@media print {
+	:root {
+		--space-600: 1.5rem;
+		--space-700: 2rem;
+		--space-800: 3.05rem;
+		--space-900: 6.15rem;
+	}
+}
+
 :where(:root) {
 	--size-100: .65rem;
 	--size-200: .75rem;
@@ -59,4 +68,13 @@
 	--size-700: clamp(1.5rem, 2.5vw, 2rem);
 	--size-800: clamp(2rem, 3.35vw, 3.05rem);
 	--size-900: clamp(3.05rem, 5.1vw, 6.15rem);
+}
+
+@media print {
+	:root {
+		--size-600: 1.3rem;
+		--size-700: 1.5rem;
+		--size-800: 2rem;
+		--size-900: 3.05rem;
+	}
 }
