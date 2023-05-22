@@ -1,0 +1,28 @@
+/**
+ * Abbreviations
+ *
+ * 1.	Increased letter spacing to improve readability of capital letters
+ * 2.	Even higher letter spacing for dark backgrounds
+ *   	and at least higher than default
+ * 3.	No interactive signifiers for printing and hovering
+ */
+
+abbr {
+	letter-spacing: .04em;
+}
+
+@media (prefers-color-scheme: dark) {
+	abbr {
+		letter-spacing: .06ch;
+	}
+}
+
+abbr:where([title]) {
+	cursor: help;
+}
+
+@media print, (hover: none) {
+	:where(abbr) {
+		text-decoration: none;
+	}
+}
