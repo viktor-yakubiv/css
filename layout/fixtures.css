@@ -36,3 +36,11 @@
 :where(.box) {
 	display: block; /* 4 */
 }
+
+/**
+ * Avoid stack spacing for the line breaking element
+ * when they go after something
+ */
+:where(br) {
+	margin-block-start: unset;
+}
