@@ -1,0 +1,20 @@
+/**
+ * Cover
+ *
+ * Defines a cover layout. The layout is useful
+ * for the page and section headers, also called heroes.
+ * It centers the heading element or group vertically
+ * and pushes everything else to the sides (top and bottom in vertical mode).
+ *
+ * Details: https://every-layout.dev/layouts/box
+ */
+
+.cover {
+	display: flex;
+	flex-direction: column;
+	row-gap: var(--cover-gap, var(--row-gap));
+}
+
+.cover > :where(h1, h2, h3, h4, h5, h6, hgroup) {
+	margin-block: auto;
+}

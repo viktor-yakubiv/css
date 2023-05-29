@@ -14,6 +14,7 @@
 
 @import url('layout/box.css');
 @import url('layout/stack.css');
+@import url('layout/cover.css');
 @import url('layout/sidebar.css');
 @import url('layout/switcher.css');
 @import url('layout/cluster.css');

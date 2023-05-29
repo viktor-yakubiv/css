@@ -24,8 +24,8 @@
  * to prevent weird spacing in flexible containers
  */
 
-:where(.stack, .switcher, .cluster, :has(> .sidebar)) > * {
-	margin-block: 0; /* 3 */
+:where(.stack, .switcher, .cluster, .cover, :has(> .sidebar)) > * {
+	margin-block: 0;
 }
 
 
