@@ -9,7 +9,7 @@
  * Reset default styling if a layout used on a list
  */
 
-:where(ul, ol, menu):where(.stack, .switcher, .cluster, :has(> .sidebar)) {
+:where(ul, ol, menu):where(.stack, .switcher, .cluster, .grid, :has(> .sidebar)) {
 	padding-left: 0;
 	list-style: none;
 }
@@ -24,7 +24,7 @@
  * to prevent weird spacing in flexible containers
  */
 
-:where(.stack, .switcher, .cluster, .cover, :has(> .sidebar)) > * {
+:where(.stack, .switcher, .cluster, .cover, .grid, :has(> .sidebar)) > * {
 	margin-block: 0;
 }
 

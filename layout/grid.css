@@ -1,0 +1,21 @@
+/**
+ * Grid
+ *
+ * Lays elements out in a grid with constant spacing between items
+ * and automatic extra rows when needed. The layout is useful
+ * for galleries containing pictures, cards etc.
+ *
+ * Details: https://every-layout.dev/layouts/grid
+ */
+
+.grid {
+	display: grid;
+	gap: var(--grid-gap, var(--row-gap) var(--column-gap));
+}
+
+@supports (width: min(100px, 100%)) {
+	.grid {
+		grid-template-columns:
+			repeat(auto-fit, minmax(min(var(--grid-item-size), 100%), 1fr));
+	}
+}
