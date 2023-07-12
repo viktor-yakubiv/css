@@ -18,7 +18,11 @@ rules:
         - blockless-after-same-name-blockless
         - after-comment
 
-  # Strings and Numbers
+  # Strings, Numbers and Units
+  length-zero-no-unit:
+    - true
+    - ignore: [custom-properties]
+      ignoreFunctions: [calc]
   number-leading-zero: never
   string-quotes: single
 
@@ -43,14 +47,17 @@ overrides:
             - after-dollar-variable
             - inside-single-line-block
 
+  # redefining global functions is okay
   - files: 'lib/**/*.scss'
     rules:
-      # variables may be inserted into custom properties
-      length-zero-no-unit: null
-
-      # redefining global functions is okay
       scss/no-global-function-names: null
 
-  - files: '**/space.css'
+  # less care about generated files and fixtures
+  - files: ['**/space.css', '**/fixtures.css']
     rules:
       max-line-length: null
+
+  # allowing `@media` class names
+  - files: 'media/**'
+    rules:
+      selector-class-pattern: ^@?([a-z][a-z0-9]*)(-[a-z0-9]+)*$
