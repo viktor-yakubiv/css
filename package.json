@@ -21,5 +21,8 @@
   },
   "peerDependencies": {
     "@csstools/normalize.css": "^12"
+  },
+  "scripts": {
+    "preversion": "make"
   }
 }
