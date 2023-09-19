@@ -1,8 +1,26 @@
 /*!
- * Global color palette
+ * Global Colour System
  *
- * Values are constructed using LCH and downgraded to DCI-P3 and sRGB
- * with help of postcss-lab-function plugin.
+ * The system imposes a pallete of two colours:
+ * - neutral: a sort of shades of grey
+ * - primary: a single colour, that is different from neutral,
+ *   to accent on some objects
+ *
+ * This pallete then gets converted to the usecase-specific colours
+ * with help of CSS relative colour function syntax that include:
+ * - accent colour
+ * - text colours, with major and minor emphasises
+ * - icon colours in minor and major emphasises as well
+ * - colours for link (text and decoration line)
+ * - text highlight colour
+ * - text selection colour
+ *
+ * Values are constructed in Oklab colour space using a polar function oklch()
+ * and manually degraded to sRGB colour space for old user agents
+ * with help of postcss-oklab-function plugin.
+ * For user agents that do not support relative colour syntax,
+ * values are also degraded and groupped manually.
+ *
  * Shades of gray and semi-transparent tones of white and black
  * are kept in sRGB since there is no need to generate more code.
  *
@@ -11,6 +29,32 @@
  */
 
 :where(:root) {
+	--shadow-color: black;
+	--lightsource-color: oclch(100% 0 0);
+	--shadow-factor: 1.05; /* 16:15 rounded to 0.05 */
+	--light-factor: 1.05;
+}
+
+/**
+ * 1. Empower light source for the day time.
+ *    This is a very sophisticated setting
+ *    that is not populated to degraded colours.
+ */
+
+@media (prefers-color-scheme: light) {
+	:where(:root) {
+		--light-factor: 1.15; /* 1 */
+	}
+}
+
+:where(:root) {
+	/* Palette */
+	--accent-color: var(--primary-accent-color);
+	--primary-accent-color: oklch(50% 100% 240deg);
+
+	/* Surface */
+	--background-color: white;
+
 	/* Text */
 	--text-color: var(--major-text-color);
 	--major-text-color: rgb(0 0 0 / .87);
@@ -22,16 +66,15 @@
 	--minor-icon-color: var(--minor-text-color);
 
 	/* Links */
-	--link-active-color: lch(5% 100 290 / .87);
-	--link-decoration-color: var(--highlight-color);
-
-	/* Surface */
-	--background-color: lch(100% 0 290);
-	--outline-color: rgb(0 0 0 / .12);
+	--link-focus-color: oklch(from var(--accent-color)
+		calc(l * pow(var(--shadow-factor), -8)) c h);
+	--link-active-color: oklch(from var(--accent-color)
+		calc(l * pow(var(--shadow-factor), -13)) c h);
+	--link-decoration-color: oklch(from var(--accent-color) l c h / .25);
 
 	/* States */
-	--highlight-color: lch(50% 100 290 / .25);
-	--selection-color: lch(60% 100 290 / .2);
+	--highlight-color: oklch(from var(--accent-color) l c h / .25);
+	--selection-color: oklch(from var(--accent-color) 60% c h / .2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,15 +84,15 @@
 		--minor-text-color: rgb(255 255 255 / .68);
 
 		/* Surface */
-		--background-color: lch(5% 5 290);
-		--outline-color: rgb(255 255 255 / .12);
-
-		/* States */
-		--highlight-color: lch(50% 100 290 / .35);
+		--background-color: oklch(15% 5% 280deg);
 
 		/* Links */
-		--link-color: lch(95% 100 290 / .9);
-		--link-active-color: lch(90% 100 290 / .9);
+		--link-color: oklch(from var(--accent-color) 75% c h);
+		--link-focus-color: var(--link-color);
+		--link-active-color: oklch(from var(--link-focus-color) 65% c h);
+
+		/* States */
+		--highlight-color: lch(50% 100% 240deg / .35);
 	}
 }
 
@@ -57,42 +100,53 @@
 /**
  * Regressive polyfills
  *
- * Values below are converted with the help of postcss-lab-function
- * and placed manually.
+ * Values below are converted with the help of PostCSS,
+ * then groupped, ordered and placed here manually.
  */
 
-@supports not (color: lch(0% 0 0)) {
+@supports not (color: oklch(from black l c h / 1)) {
 	:where(:root) {
-		--background-color: color(display-p3 1 1 1);
-		--highlight-color: color(display-p3 .26 .41 1 / .25);
-		--selection-color: color(display-p3 .45 .55 1 / .2);
-		--link-active-color: color(display-p3 0 .04 .24 / .87);
+		/* Links */
+		--link-focus-color: oklch(34% 100% 240deg);
+		--link-active-color: oklch(27% 100% 240deg);
+		--link-decoration-color: oklch(50% 100% 240deg / .25);
+
+		/* States */
+		--highlight-color: oklch(50% 100% 240deg / .25);
+		--selection-color: oklch(60% 100% 240deg / .2);
 	}
 
 	@media (prefers-color-scheme: dark) {
 		:where(:root) {
-			--background-color: color(display-p3 .07 .06 .09);
-			--highlight-color: color(display-p3 .26 .41 1 / .35);
-			--link-color: color(display-p3 .96 .98 1 / .9);
-			--link-active-color: color(display-p3 .89 .88 1 / .9);
+			/* Links */
+			--link-color: oklch(95% 100% 240deg / .9);
+			--link-active-color: oklch(90% 100% 240deg / .9);
 		}
 	}
 }
 
-@supports not (color: color(display-p3 0 0 0)) {
+@supports not (oklch(0% 0% 0deg)) {
 	:where(:root) {
-		--background-color: rgb(255 255 255);
-		--highlight-color: rgb(57 110 255 / .25);
-		--selection-color: rgb(110 143 255 / .2);
-		--link-active-color: rgb(0 12 62 / .87);
+		--primary-accent-color: rgb(0 106 162);
+
+		/* Links */
+		--link-focus-color: rgb(0 60 102);
+		--link-active-color: rgb(0 42 71);
+		--link-decoration-color: rgb(0 106 162 / .25);
+
+		/* States */
+		--highlight-color: rgb(0 106 162 / .25);
+		--selection-color: rgb(0 137 208 / .2);
 	}
 
 	@media (prefers-color-scheme: dark) {
 		:where(:root) {
-			--background-color: rgb(17 16 24);
-			--highlight-color: rgb(57 110 255 / .35);
-			--link-active-color: rgb(227 224 255 / .9);
-			--link-color: rgb(245 249 255 / .9);
+			/* Surface */
+			--background-color: rgb(9 10 19);
+
+			/* Links */
+			--link-color: rgb(209 244 255 / .9);
+			--link-active-color: rgb(177 230 255 / .9);
 		}
 	}
 }
