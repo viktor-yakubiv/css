@@ -2,23 +2,34 @@
 @use 'sass:math';
 @use 'sass:map';
 
-$ratio: 1.15 !default;
-$major-ratio: $ratio !default;
-$minor-ratio: $ratio !default;
 
-$base: 1rem !default;
-$precision: .05 !default;
-
-$lower-clamp-point: math.div(960px, 16px) * $base !default;
-$higher-clamp-point: null !default;
-$viewport-unit: 1vw;
-
-
+// Configurable precision and the rounding function
+// This function and the defintion must go first as the precision
+// can be overridden and the round function is used for other options.
+$precision: .05;
 @function round($value, $precision: $precision) {
 	$multiplier: math.div(1, $precision);
 
 	@return math.div(math.round($value * $multiplier), $multiplier);
 }
+
+
+// Major second interval
+// rounded to the precision of my liking.
+//
+// More: https://en.wikipedia.org/wiki/Semitone#Major_second
+$ratio: round(math.div(9, 8)) !default;
+$major-ratio: $ratio !default;
+$minor-ratio: $ratio !default;
+
+// Base is the resulting unit for the value function
+// It is expected to be 1.0 with a unit.
+$base: 1rem !default;
+
+$lower-clamp-point: math.div(960px, 16px) * $base !default;
+$higher-clamp-point: null !default;
+$viewport-unit: 1vw;
+
 
 @function select-ratio($power) {
 	@if $power < 0 {
