@@ -48,7 +48,7 @@ overrides:
             - inside-single-line-block
 
   # redefining global functions is okay
-  - files: 'lib/**/*.scss'
+  - files: ['lib/**/*.scss']
     rules:
       scss/no-global-function-names: null
 
@@ -58,6 +58,6 @@ overrides:
       max-line-length: null
 
   # allowing `@media` class names
-  - files: 'media/**'
+  - files: ['media/**']
     rules:
       selector-class-pattern: ^@?([a-z][a-z0-9]*)(-[a-z0-9]+)*$
