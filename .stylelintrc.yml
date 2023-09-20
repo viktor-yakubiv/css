@@ -27,7 +27,6 @@ rules:
   string-quotes: single
 
   # Colors
-  hue-degree-notation: number
   alpha-value-notation: number
 
   # Other
