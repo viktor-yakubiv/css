@@ -30,7 +30,7 @@
 
 :where(:root) {
 	--shadow-color: black;
-	--lightsource-color: oclch(100% 0 0);
+	--lightsource-color: oklch(100% 0 0deg);
 	--shadow-factor: 1.05; /* 16:15 rounded to 0.05 */
 	--light-factor: 1.05;
 }
