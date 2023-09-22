@@ -1,0 +1,114 @@
+:where(:root) {
+	--input-padding-block: var(--box-padding-block, .3rem);
+	--input-padding-inline: var(--box-padding-inline, 1rem);
+	--input-border-radius: var(--box-border-radius, .3rem);
+	--input-border-color: oklch(from var(--text-color) l c h / .15);
+	--input-border-width: var(--stroke-100, 1px);
+	--input-outline-color: oklch(from var(--accent-color) l c h / .4);
+	--input-outline-width: var(--stroke-200);
+}
+
+@supports not (color: oklch(from black l c h / .5)) {
+	:where(:root) {
+		--input-outline-color: var(--accent-color);
+		--input-border-color: rgb(0 0 0 / .12);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:where(:root) {
+			--input-border-color: rgb(100% 100% 100% / .12);
+		}
+	}
+}
+
+input:where(
+	[type='text' i],
+	[type='password' i],
+	[type='email' i],
+	[type='url' i],
+	[type='date' i],
+	[type='month' i],
+	[type='time' i],
+	[type='datetime' i],
+	[type='datetime-local' i],
+	[type='week' i],
+	[type='number' i],
+	[type='search' i],
+	[type='tel' i],
+	[type='color' i],
+	:not([type ])
+),
+select,
+textarea {
+	display: inline-block;
+	padding-block: var(--input-padding-block);
+	padding-inline: var(--input-padding-inline);
+	margin-block: unset;
+	font-family: var(--input-font-family, system-ui);
+	font-size: 1rem;
+	line-height: 1.5;
+	line-height: 1rlh;
+	color: var(--input-text-color, oklch(from var(--major-text-color, inherit)
+		calc(l / var(--shadow-factor, 1.15)) c h) / 1);
+	vertical-align: middle;
+	background-color: var(--background-color, white);
+	background-color: oklch(from var(--background-color, white)
+	calc(l / var(--shadow-factor, 1.025)) c h / alpha);
+	background-color: rgb(0 0 0 / .025);
+	background-clip: padding-box;
+	border: var(--input-border-width) solid var(--input-border-color);
+	border-radius: var(--input-border-radius);
+	outline: var(--space-200) solid transparent;
+	outline-offset: calc(-1 * var(--input-border-width));
+	box-shadow:
+		inset 0 var(--stroke-100) var(--stroke-200) rgb(0 0 0 / .15),
+		inset 0 var(--stroke-100) rgb(0 0 0 / .15),
+		inset 0 calc(-1 * var(--stroke-100)) rgb(100% 100% 100% / .25);
+	transition-duration: var(--duration-100, 300ms);
+	transition-property:
+		outline-offset, outline-width, outline-color,
+		border, box-shadow, background;
+}
+
+input:where(
+	[type='text' i],
+	[type='password' i],
+	[type='email' i],
+	[type='url' i],
+	[type='date' i],
+	[type='month' i],
+	[type='time' i],
+	[type='datetime' i],
+	[type='datetime-local' i],
+	[type='week' i],
+	[type='number' i],
+	[type='search' i],
+	[type='tel' i],
+	[type='color' i],
+	:not([type])
+):focus,
+select:focus,
+textarea:focus {
+	outline-width: var(--input-outline-width);
+	outline-color: var(--input-outline-color);
+}
+
+select {
+	appearance: none;
+}
+
+textarea {
+	box-sizing: content-box;
+	min-block-size: 2lh;
+	block-size: unset;
+	resize: block;
+}
+
+p:where(:has(input,select,textarea)) {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+p:where(:has(input,select,textarea)) > * {
+	flex-basis: 100%;
+}
