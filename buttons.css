@@ -1,0 +1,155 @@
+/**
+ * Button design concept
+ * 1. A button is placeced into a hole in the surface
+ * 2. Button casts shadow when it's elevated
+ * 3. Button has beveled blicking corners
+ */
+
+
+:where(:root) {
+	--button-padding-block: var(--box-padding-block, .3rem);
+	--button-padding-inline: var(--box-padding-inline, 1rem);
+	--button-border-radius: var(--box-border-radius, .3rem);
+	--button-border-width: var(--stroke-100, 1px);
+	--button-outline-color: oklch(from var(--accent-color) l c h / .4);
+	--button-outline-width: var(--stroke-200);
+	--button-height: var(--stroke-100);
+	--button-height: var(--stroke-200);
+	--button-hole-width: var(--stroke-100);
+	--button-bevel-width: var(--stroke-100);
+	--button-corner-smooth-ratio: .35;
+}
+
+@supports not (color: oklch(from black l c h / .5)) {
+	:where(:root) {
+		--button-outline-color: var(--accent-color);
+		--button-border-color: rgb(0 0 0 / .12);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:where(:root) {
+			--button-border-color: rgb(100% 100% 100% / .12);
+		}
+	}
+}
+
+button,
+input:where([type='button' i], [type='submit' i], [type='reset' i]),
+a:where([download], [role='button' i]) {
+	--button-press-fraction: 0;
+
+	appearance: none;
+	/* box-sizing: border-box; */
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	text-decoration: none;
+	/* -webkit-user-drag: none; */
+	display: inline-block;
+	padding-block: var(--button-padding-block);
+	padding-inline: var(--button-padding-inline);
+	margin-block: unset;
+	font-family: var(--button-font-family, system-ui);
+	font-size: 1rem;
+	line-height: 1.5;
+	line-height: 1rlh;
+	vertical-align: middle;
+	background-color: oklch(95% 0 265deg);
+	color: color-contrast(white vs black);
+	background-image:
+		linear-gradient(
+			oklch(from var(--lightsource-color) l c h / .05),
+			oklch(from var(--lightsource-color) l c h / 0)),
+		linear-gradient(
+			oklch(from var(--shadow-color) l c h / calc(.15 * var(--button-press-fraction))),
+			oklch(from var(--shadow-color) l c h / calc(.05 + .15 * var(--button-press-fraction))));
+	border: 0;
+	border-radius: var(--button-border-radius);
+	outline: var(--space-200) solid transparent;
+	outline-offset: calc(-1 * var(--button-border-width));
+	transition-duration: var(--duration-100, 50ms);
+	transition-property:
+		outline-offset, outline-width, outline-color,
+		border, box-shadow, background, filter;
+	margin: var(--stroke-100);
+	box-shadow:
+		/* a frame from the hole in the surface where button is placed */
+		0 var(--button-bevel-width) 0 calc(var(--button-hole-width) + var(--button-bevel-width) / 2) oklch(from var(--lightsource-color) l c h / .15),
+		0 0 0 var(--button-hole-width) oklch(from var(--shadow-color) l c h / .15),
+		0 calc(.15 * var(--button-hole-width)) 0 calc(.5 * var(--button-hole-width)) oklch(from var(--shadow-color) l c h / .35),
+
+		/* 0 var(--stroke-200) var(--stroke-100) calc(-1 * var(--stroke-100)) oklch(from var(--shadow-color) l c h / .15), */
+
+		/* inset 0 0 2em oklch(from var(--lightsource-color) l c h / .8), */
+
+		/* inset 0 var(--stroke-100) var(--stroke-100) oklch(from var(--lightsource-color) l c h / .25), */
+		/* inset calc( .5 * var(--button-height) * (1 - var(--button-press-fraction))) 0 oklch(from var(--lightsource-color) l c h / .16), */
+		/* inset calc(-.5 * var(--button-height) * (1 - var(--button-press-fraction))) 0 oklch(from var(--lightsource-color) l c h / .16), */
+		inset 0 calc(.8 * var(--button-height) * (1 - var(--button-corner-smooth-ratio)) * (1 - var(--button-press-fraction))) oklch(from var(--lightsource-color) l c h / .25),
+		inset 0 calc(.8 * var(--button-height) * (1 - var(--button-press-fraction))) calc(var(--button-corner-smooth-ratio, 0) * (0.8 * var(--button-height)) * (1 - var(--button-press-fraction))) oklch(from var(--lightsource-color) l c h / .15),
+		/* inset 0 calc(-1 * var(--button-height) * (1 - var(--button-press-fraction))) 4px oklch(from var(--shadow-color) l c h / .15), */
+		inset 0 calc(-1 * var(--button-height) * (1 - var(--button-press-fraction))) calc(var(--button-corner-smooth-ratio, 0) * var(--button-height) * (1 - var(--button-press-fraction))) oklch(from var(--shadow-color) l c h / .25),
+		inset 0 calc(-1 * (1 - var(--button-corner-smooth-ratio)) * var(--button-height) * (1 - var(--button-press-fraction))) oklch(from var(--shadow-color) l c h / .15),
+		0 0 0 white;
+}
+
+
+/* Firefox: Get rid of the inner focus border */
+/* button::-moz-focus-inner { */
+/* 	padding: 0; */
+/* 	border: 0; */
+/* } */
+
+
+/* Button groups */
+/* button {
+	letter-spacing: normal;
+	vertical-align: top;
+	word-spacing: normal;
+	text-rendering: auto;
+} */
+
+
+button:is(:hover, :focus),
+input:where([type='button' i], [type='submit' i], [type='reset' i]):is(:hover, :focus),
+a:where([donwload], [role='button' i]):is(:hover, :focus) {
+	--button-press-fraction: .15;
+	/* filter: brightness(1.1); */
+}
+
+button:focus {}
+
+
+button:active,
+input:where([type='button' i], [type='submit' i], [type='reset' i]):active,
+a:where([donwload], [role='button' i]):active {
+	--button-press-fraction: .85;
+	/* filter: brightness(.9); */
+}
+
+:where(form) button:not([type]),
+:is(button, input)[type=submit i],
+input[type=button i].primary,
+button.primary,
+a:where([download], [role='button']).primary {
+	background-color: oklch(70% 95% 265deg);
+	color: white;
+}
+
+button.destructive,
+:is(button, input)[type=reset i],
+input:where([type=submit i], [type=button i]).destructive,
+a:where([download], [role='button']).destructive {
+	background-color: oklch(50% 80% 45deg);
+	color: white;
+}
+
+button:disabled,
+input:where([type='button' i], [type='submit' i], [type='reset' i]):disabled,
+a[download]:where([href=''], :not([href])) {
+	--button-press-fraction: 0;
+	cursor: not-allowed;
+	background-color: var(--background-color);
+	color: var(--minor-text-color);
+	opacity: .8;
+}
