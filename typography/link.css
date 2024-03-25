@@ -1,77 +1,55 @@
-/* Color */
-
-:link, :visited {
+:any-link {
 	color: var(--link-color, inherit);
 	transition:
 		color var(--duration-100, 50ms),
-		box-shadow var(--duration-100, 50ms),
-		border-radius var(--duration-100, 50ms);
+		text-decoration-thickness var(--duration-100, 50ms),
+		text-underline-offset var(--duration-100, 50ms);
 }
 
-:where(:link, :visited):hover {
+:visited {
+	color: var(--link-visited-color);
+}
+
+:where(:any-link):hover {
 	color: var(--link-hover-color, var(--link-focus-color));
 }
 
-:where(:link, :visited):focus {
+:where(:any-link):focus {
 	color: var(--link-focus-color, var(--link-hover-color));
 }
 
-:where(:link, :visited):active {
+:where(:any-link):active {
 	color: var(--link-active-color);
 }
 
 /**
  * Decoration
  *
- * The decoration is done with box-shadow because
- * of the rendering features of underline — the line omits
- * descending letters and spaces.
+ * Thick decorations applied to links only on screen and only when relative
+ * colour syntax supported.
  *
- * 1.	The overlapping decoration color is set to transparent
- *   	rather than current color due to potential accessibility issues.
- *   	While printing underline keeps using the current color.
+ * Implementation must be done using `text-decoration-thickness` to let
+ * users disable this feature with `text-decoration: none`.
  *
- * 2.	A regular underline is used for printing for increased contrast.
+ * Whether links should be prominently decorated when printed,
+ * still is a question:
+ * - on one side, printed PDF documents are interactive and need a signifier;
+ * - on another, printed documents require links in visible text.
  */
-:link, :visited {
-	padding-inline: var(--link-outset-inline, .15ch);
-	margin-inline: calc(-1 * var(--link-outset-inline, .15ch));
-	text-decoration: none;
-	box-shadow:
-		inset
-		0
-		calc(
-			-1 * (var(--link-underline-size, .15em) +
-			var(--link-underline-overlap, 0px))
-		)
-		var(--link-decoration-color, transparent); /* 1 */
-}
+@media only screen {
+	@supports (color: oklch(from white l c h / .1)) {
+		:any-link {
+			text-decoration-thickness:
+				calc((1cap - 1ex) / 2 + var(--link-decoration-overlap, .35ex));
+			text-decoration-color:
+				var(--link-decoration-color, oklch(from currentColor l c h / .05));
+			text-underline-offset: calc(-.5 * var(--link-decoration-overlap, .35ex));
+			text-decoration-skip-ink: none;
+		}
 
-:where(:link, :visited):is(:hover, :focus) {
-	--link-underline-size: 2em;
-
-	border-radius: var(--link-border-radius, var(--link-outset-inline, .15ch));
-}
-
-@supports (height: 1lh) and (height: 1cap) {
-	:link, :visited {
-		--link-underline-size:
-			calc(
-				(1lh - 1cap) / 2 +
-				var(--link-underline-overlap, 0px)
-			);
-	}
-
-	:where(:link, :visited):is(:hover, :focus) {
-		--link-underline-size: 1lh;
-	}
-}
-
-@media print {
-	:link, :visited {
-		--link-underline-size: 0px;
-
-		text-decoration: underline;
-		text-decoration-color: var(--link-decoration-color, currentColor);
+		:any-link:is(:hover, :focus) {
+			text-decoration-thickness: 1lh;
+			text-underline-offset: calc((1lh - 1cap) / -2 - 1cap);
+		}
 	}
 }
