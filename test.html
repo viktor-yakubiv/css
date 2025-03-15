@@ -1,0 +1,108 @@
+<!doctype html>
+<meta charset=utf-8>
+<meta name=viewport content=width=device-width>
+<title>Forms</title>
+
+<link rel=stylesheet href=../index.css>
+<link rel=stylesheet href=inputs.css>
+<link rel=stylesheet href=buttons.css>
+<link rel=stylesheet href=color-scale.css>
+<link rel=stylesheet href=color-scale-js.css>
+
+<h1>Forms</h1>
+
+<section>
+	<h2>Input normalisation</h2>
+
+	<p><a href=#>Test link</a>
+
+	<p>Plain inputs.
+
+	<form>
+		<input>
+		<input type=text>
+		<input type=search placeholder="Search...">
+		<select>
+			<option value=en>English</option>
+			<option value=uk>Українська</option>
+		<select>
+		<input type=submit>
+		<input type=button value=Button>
+	</form>
+</section>
+
+<section>
+	<h2>Input groups</h2>
+
+	<form>
+		<p>
+			<label for=email>Email</label>
+			<input id=email type=email>
+		<p>
+			<label for=password>Password</label>
+			<input id=password type=password>
+
+		<p>
+			<label>
+				<input type=checkbox> Remember me
+			</label>
+		</p>
+
+		<p>
+			<button type=submit class=primary>Sign in</button>
+		<p>
+			<button type=reset>Reset</button>
+	</form>
+</section>
+
+<section>
+	<h2>Form fields on coloured background</h2>
+	<form style="
+		padding: 1rem;
+		background-color: hsl(200 50% 95%);
+	">
+		<p>
+			<input>
+	</form>
+</section>
+
+<style>
+.palette {
+	padding-inline-start: 0;
+	display: flex;
+	gap: 0;
+}
+
+.palette > * {
+	display: block;
+	width: 4rem;
+	height: 4rem;
+	aspect-ratio: 1;
+	background-color: var(--color);
+	margin-block: 0;
+}
+</style>
+<section>
+	<h2>Colors</h2>
+	<ol class=palette>
+		<li style="--color: var(--primary-color-n3)"></li>
+		<li style="--color: var(--primary-color-n2)"></li>
+		<li style="--color: var(--primary-color-n1)"></li>
+		<li style="--color: var(--primary-color-base)"></li>
+		<li style="--color: var(--primary-color-p1)"></li>
+		<li style="--color: var(--primary-color-p2)"></li>
+		<li style="--color: var(--primary-color-p3)"></li>
+	</ol>
+
+	<ol class=palette>
+		<li style="--color: var(--primary-color-10)"></li>
+		<li style="--color: var(--primary-color-20)"></li>
+		<li style="--color: var(--primary-color-30)"></li>
+		<li style="--color: var(--primary-color-40)"></li>
+		<li style="--color: var(--primary-color-50)"></li>
+		<li style="--color: var(--primary-color-60)"></li>
+		<li style="--color: var(--primary-color-70)"></li>
+		<li style="--color: var(--primary-color-80)"></li>
+		<li style="--color: var(--primary-color-90)"></li>
+	</ol>
+</section>

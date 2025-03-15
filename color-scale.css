@@ -1,0 +1,84 @@
+/*!
+ * Global Colour System
+ *
+ * The system imposes a pallete of two colours:
+ * - neutral: a sort of shades of grey
+ * - primary: a single colour, that is different from neutral,
+ *   to accent on some objects
+ *
+ * This pallete then gets converted to the usecase-specific colours
+ * with help of CSS relative colour function syntax that include:
+ * - accent colour
+ * - text colours, with major and minor emphasises
+ * - icon colours in minor and major emphasises as well
+ * - colours for link (text and decoration line)
+ * - text highlight colour
+ * - text selection colour
+ *
+ * Values are constructed in Oklab colour space using a polar function oklch()
+ * and manually degraded to sRGB colour space for old user agents
+ * with help of postcss-oklab-function plugin.
+ * For user agents that do not support relative colour syntax,
+ * values are also degraded and groupped manually.
+ *
+ * Shades of gray and semi-transparent tones of white and black
+ * are kept in sRGB since there is no need to generate more code.
+ *
+ * Negating @supports rule was used to preserve original grouping
+ * in a single place and downgrade only ones that are needed.
+ */
+
+:where(:root) {
+	--shadow-color: black;
+	--lightsource-color: oklch(100% 0 0deg);
+	--shadow-factor: 1.05; /* 16:15 rounded to 0.05 */
+	--light-factor: 1.05;
+	--base-color-ratio: 1.25;
+	--primary-color-ratio: var(--base-color-ratio);
+	--neutral-color-ratio: var(--base-color-ratio);
+}
+
+/**
+ * 1. Empower light source for the day time.
+ *    This is a very sophisticated setting
+ *    that is not populated to degraded colours.
+ */
+
+@media (prefers-color-scheme: light) {
+	:where(:root) {
+		--light-factor: 1.15; /* 1 */
+	}
+}
+
+:where(:root) {
+	--primary-color-base: oklch(48% 80% 265deg);
+
+	--primary-color-n3: oklch(from var(--primary-color-base)
+		calc(l * pow(var(--primary-color-ratio, var(--base-color-ratio)), -5)) c h);
+
+	--primary-color-n2: oklch(from var(--primary-color-base)
+		calc(l * pow(var(--primary-color-ratio, var(--base-color-ratio)), -3)) c h);
+
+	--primary-color-n1: oklch(from var(--primary-color-base)
+		calc(l * pow(var(--primary-color-ratio, var(--base-color-ratio)), -2)) c h);
+
+	--primary-color-p1: oklch(from var(--primary-color-base)
+		calc(l * pow(var(--primary-color-ratio, var(--base-color-ratio)), 1)) c h);
+
+	--primary-color-p2: oklch(from var(--primary-color-base)
+		calc(l * pow(var(--primary-color-ratio, var(--base-color-ratio)), 3)) c h);
+
+	--primary-color-p3: oklch(from var(--primary-color-base)
+		calc(l * pow(var(--primary-color-ratio, var(--base-color-ratio)), 5)) c h);
+}
+
+:where(:root) {
+	--neutral-color-base: black;
+	--neutral-color-1: oklch(from var(--neutral-color-base) calc(l * pow(var(--neutral-color-ratio), 5)) c h);
+}
+
+@media (prefers-color-scheme: dark) {
+	:where(:root) {
+		--neutral-color-base: white;
+	}
+}

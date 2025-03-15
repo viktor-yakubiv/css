@@ -1,0 +1,13 @@
+:root {
+    --primary-color-0: hsl(338.18 0% 100%);
+    --primary-color-10: hsl(126.35 74.932% 84.035%);
+    --primary-color-20: hsl(129.53 70.326% 65.898%);
+    --primary-color-30: hsl(130.91 55.757% 52.91%);
+    --primary-color-40: hsl(133.25 68.689% 40.323%);
+    --primary-color-50: hsl(137.1 100% 28.28%);
+    --primary-color-60: hsl(129.3 68.553% 26.366%);
+    --primary-color-70: hsl(123.91 48.433% 21.904%);
+    --primary-color-80: hsl(120.97 41.689% 15.104%);
+    --primary-color-90: hsl(118.83 47.206% 7.1562%);
+    --primary-color-100: hsl(117.82 51.168% 0%)
+}
