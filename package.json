@@ -10,9 +10,9 @@
     "**/*.css"
   ],
   "devDependencies": {
-    "postcss": "^8.4.27",
-    "postcss-cli": "^10.1.0",
-    "postcss-import": "^15.1.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11",
+    "postcss-import": "^16",
     "sass": "^1.49.9",
     "stylelint": "^15.10.0",
     "stylelint-config-recess-order": "^4.3.0",
