@@ -1,15 +1,21 @@
 extends:
   - stylelint-config-standard
   - stylelint-config-recess-order
+  - '@stylistic/stylelint-config'
 
 rules:
   # General
-  indentation: tab
-  max-empty-lines: 2
-  max-line-length: 80
+  '@stylistic/indentation':
+    - tab
+    - indentInsideParens: once-at-root-twice-in-block
+  '@stylistic/max-empty-lines': 2
+  '@stylistic/max-line-length': 80
 
   # Empty lines
-  selector-list-comma-newline-after: always-multi-line
+  '@stylistic/declaration-colon-newline-after': null
+  '@stylistic/declaration-colon-space-after': null
+  '@stylistic/function-parentheses-newline-inside': null
+  '@stylistic/selector-list-comma-newline-after': always-multi-line
   at-rule-empty-line-before:
     - always
     - except:
@@ -19,17 +25,19 @@ rules:
         - after-comment
 
   # Strings, Numbers and Units
+  '@stylistic/number-leading-zero': never
+  '@stylistic/number-no-trailing-zeros': null
+  '@stylistic/string-quotes': single
   length-zero-no-unit:
     - true
     - ignore: [custom-properties]
       ignoreFunctions: [calc]
-  number-leading-zero: never
-  string-quotes: single
 
   # Colors
   alpha-value-notation: number
 
-  # Other
+  # Not suitable for the library of this kind
+  declaration-block-no-redundant-longhand-properties: null
   no-duplicate-selectors: null
   no-irregular-whitespace: null
 
@@ -54,7 +62,7 @@ overrides:
   # less care about generated files and fixtures
   - files: ['**/space.css', '**/fixtures.css']
     rules:
-      max-line-length: null
+      '@stylistic/max-line-length': null
 
   # allowing `@media` class names
   - files: ['media/**']

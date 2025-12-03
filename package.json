@@ -10,14 +10,15 @@
     "**/*.css"
   ],
   "devDependencies": {
+    "@stylistic/stylelint-config": "^3",
     "postcss": "^8.5.6",
     "postcss-cli": "^11",
     "postcss-import": "^16",
     "sass": "^1.49.9",
-    "stylelint": "^15.10.0",
-    "stylelint-config-recess-order": "^4.3.0",
-    "stylelint-config-standard": "^34.0.0",
-    "stylelint-config-standard-scss": "^11.0.0"
+    "stylelint": "^16",
+    "stylelint-config-recess-order": "^7",
+    "stylelint-config-standard": "^39",
+    "stylelint-config-standard-scss": "^16"
   },
   "peerDependencies": {
     "@csstools/normalize.css": "^12"
