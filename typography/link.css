@@ -43,8 +43,8 @@
 				calc((1cap - 1ex) / 2 + var(--link-decoration-overlap, .35ex));
 			text-decoration-color:
 				var(--link-decoration-color, oklch(from currentColor l c h / .05));
-			text-underline-offset: calc(-.5 * var(--link-decoration-overlap, .35ex));
 			text-decoration-skip-ink: none;
+			text-underline-offset: calc(-.5 * var(--link-decoration-overlap, .35ex));
 		}
 
 		:any-link:is(:hover, :focus) {

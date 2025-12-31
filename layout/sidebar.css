@@ -18,12 +18,12 @@
 }
 
 :has(> .sidebar) > :where(:not(.sidebar)) {
-	flex-basis: 0;
 	flex-grow: 999;
+	flex-basis: 0;
 	min-inline-size: 50%;
 }
 
 .sidebar {
-	flex-basis: var(--sidebar-inline-size);
 	flex-grow: 1;
+	flex-basis: var(--sidebar-inline-size);
 }

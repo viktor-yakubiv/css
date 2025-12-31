@@ -15,7 +15,7 @@
 
 @supports (width: min(100px, 100%)) {
 	.grid {
-		grid-template-columns:
-			repeat(auto-fit, minmax(min(var(--grid-item-size), 100%), 1fr));
+		grid-template-columns: repeat(auto-fit,
+			minmax(min(var(--grid-item-size), 100%), 1fr));
 	}
 }
