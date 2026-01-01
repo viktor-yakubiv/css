@@ -60,7 +60,7 @@ overrides:
       scss/no-global-function-names: null
 
   # less care about generated files and fixtures
-  - files: ['**/space.css', '**/fixtures.css']
+  - files: ['**/fixtures.css']
     rules:
       '@stylistic/max-line-length': null
 

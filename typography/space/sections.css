@@ -1,0 +1,102 @@
+/*!
+ * Section spacing
+ *
+ * Gaps between HTML sectioning elements
+ * listed in §4.3 of HTML Living Standard:
+ * https://html.spec.whatwg.org/multipage/sections.html
+ *
+ * Section level is extracted by the largest contained heading.
+ * This is achieved by applying a serie of :has() selectors
+ * in a descendent order
+ *
+ * Also, applies section margins to headings
+ * for the case when sectioning wrappers omitted.
+ */
+
+@property --section-gap {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --section-gap-1 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 4rem;
+}
+
+@property --section-gap-2 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 3rem;
+}
+
+@property --section-gap-3 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 2rem;
+}
+
+@property --section-gap-4 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 1.5rem;
+}
+
+@property --section-gap-base {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 1rem;
+}
+
+:where(:root) {
+	--section-gap-1: var(--space-900, 3.05rem);
+	--section-gap-2: var(--space-800, 2rem);
+	--section-gap-3: var(--space-700, 1.5rem);
+	--section-gap-4: var(--space-600, 1.3rem);
+}
+
+:is(article, section, nav, aside) {
+	margin-trim: block;
+	margin-block: var(--content-gap-normal, var(--section-gap-base, 1rem));
+}
+
+:where(article, section, nav, aside):has(h4) {
+	margin-block: var(--section-gap-4);
+}
+
+:where(article, section, nav, aside):has(h3) {
+	margin-block: var(--section-gap-3);
+}
+
+:where(article, section, nav, aside):has(h2) {
+	margin-block: var(--section-gap-2);
+}
+
+:where(article, section, nav, aside):has(h1) {
+	margin-block: var(--section-gap-1);
+}
+
+
+/**
+ * Heading spacing
+ * when sectioning wrappers are omitted.
+ *
+ * These margins are normally trimmed by the nearest section.
+ */
+
+h1 {
+	margin-block-start: var(--section-gap-1);
+}
+
+h2 {
+	margin-block-start: var(--section-gap-2);
+}
+
+h3 {
+	margin-block-start: var(--section-gap-3);
+}
+
+h4 {
+	margin-block-start: var(--section-gap-4);
+}

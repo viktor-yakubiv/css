@@ -1,0 +1,197 @@
+/**
+ * Order between blocks and sections is important:
+ * sections complement heading spacing with additional rules
+ * that should go after general rules to override them.
+ */
+/*!
+ * Content blocks spacing
+ *
+ * Gaps between HTML elements groupping content
+ * listed in §4.4 of HTML Living Standard:
+ * https://html.spec.whatwg.org/multipage/grouping-content.html
+ *
+ * 1.  Regular spacing between content flow blocks
+ * 2.  Condensed spacing between list items
+ *     2.1 unless they contain other content flow blocks
+ *     2.2 unless they are title-description groups
+ * 3.  Smaller space between groupped headings
+ *     as well as headings and subheadings/subtitles
+ * 4.  Larger spacing before and after figures
+ *     4.1 but small captions should be close to the figure content
+ */
+@property --content-block-gap {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+@property --content-block-gap-small {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+@property --content-block-gap-normal {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+@property --content-block-gap-large {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+:where(:root) {
+	--content-block-gap-small:  var(--space-300, .75rem);
+	--content-block-gap-normal: var(--space-400, 1rem);
+	--content-block-gap-large:  var(--space-500, 1.5rem);
+}
+p, hr,
+pre,
+blockquote,
+dl, ol, ul {
+	margin-block: var(--content-block-gap-normal); /* 1 */
+}
+li {
+	margin-block: var(--content-block-gap-small); /* 2 */
+}
+:where(ol, ul):has(p, dl, ol, ul, pre, blockquote) li {
+	margin-block: var(--content-block-gap-normal); /* 2.1 */
+}
+dt, dd {
+	margin-block: var(--content-block-gap-small); /* 2 */
+}
+dd + dt {
+	margin-block-start: var(--content-block-gap-normal); /* 2.2 */
+}
+dt > :where(div) {
+	margin-block: var(--content-block-gap-normal); /* 2.2 */
+}
+h1, h2, h3, h4, h5, h6, hgroup {
+	margin-block: var(--content-block-gap-small); /* 3 */
+}
+:is(h1, h2, h3, h4, h5, h6, hgroup, header) + * {
+	margin-block-start: var(--content-block-gap-small); /* 3 */
+}
+hgroup > * + * {
+	margin-block-start: var(--content-block-gap-small); /* 3 */
+}
+figure {
+	margin-trim: block;
+	margin-block: var(--content-block-gap-large); /* 4 */
+}
+figcaption {
+	margin-block: var(--content-block-gap-small); /* 4.1 */
+}
+/*!
+ * Section spacing
+ *
+ * Gaps between HTML sectioning elements
+ * listed in §4.3 of HTML Living Standard:
+ * https://html.spec.whatwg.org/multipage/sections.html
+ *
+ * Section level is extracted by the largest contained heading.
+ * This is achieved by applying a serie of :has() selectors
+ * in a descendent order
+ *
+ * Also, applies section margins to headings
+ * for the case when sectioning wrappers omitted.
+ */
+@property --section-gap {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+@property --section-gap-1 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 4rem;
+}
+@property --section-gap-2 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 3rem;
+}
+@property --section-gap-3 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 2rem;
+}
+@property --section-gap-4 {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 1.5rem;
+}
+@property --section-gap-base {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 1rem;
+}
+:where(:root) {
+	--section-gap-1: var(--space-900, 3.05rem);
+	--section-gap-2: var(--space-800, 2rem);
+	--section-gap-3: var(--space-700, 1.5rem);
+	--section-gap-4: var(--space-600, 1.3rem);
+}
+:is(article, section, nav, aside) {
+	margin-trim: block;
+	margin-block: var(--content-gap-normal, var(--section-gap-base, 1rem));
+}
+:where(article, section, nav, aside):has(h4) {
+	margin-block: var(--section-gap-4);
+}
+:where(article, section, nav, aside):has(h3) {
+	margin-block: var(--section-gap-3);
+}
+:where(article, section, nav, aside):has(h2) {
+	margin-block: var(--section-gap-2);
+}
+:where(article, section, nav, aside):has(h1) {
+	margin-block: var(--section-gap-1);
+}
+/**
+ * Heading spacing
+ * when sectioning wrappers are omitted.
+ *
+ * These margins are normally trimmed by the nearest section.
+ */
+h1 {
+	margin-block-start: var(--section-gap-1);
+}
+h2 {
+	margin-block-start: var(--section-gap-2);
+}
+h3 {
+	margin-block-start: var(--section-gap-3);
+}
+h4 {
+	margin-block-start: var(--section-gap-4);
+}
+/*!
+ * Page body padding
+ *
+ * Defines custom properties for page body paddings
+ * that can be used in calc-expressions,
+ * and applies those to the document `<body>`
+ * with 0 specificity for an easy override.
+ *
+ * Exprects body margin reset applied.
+ */
+@property --body-padding-block {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+@property --body-padding-inline {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+:where(:root) {
+	--body-padding-block: var(--space-600, 1.5rem);
+	--body-padding-inline: var(--space-700, 2rem);
+}
+:where(body) {
+	padding-block: var(--body-padding-block);
+	padding-inline: var(--body-padding-inline);
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LmNzcyIsImJsb2Nrcy5jc3MiLCJzZWN0aW9ucy5jc3MiLCJib2R5LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7OztFQUlFO0FDSkY7Ozs7Ozs7Ozs7Ozs7OztFQWVFO0FBRUY7Q0FDQyw2QkFBNkI7Q0FDN0IsY0FBYztDQUNkLGdCQUFnQjtBQUNqQjtBQUVBO0NBQ0MsNkJBQTZCO0NBQzdCLGNBQWM7Q0FDZCxnQkFBZ0I7QUFDakI7QUFFQTtDQUNDLDZCQUE2QjtDQUM3QixjQUFjO0NBQ2QsZ0JBQWdCO0FBQ2pCO0FBRUE7Q0FDQyw2QkFBNkI7Q0FDN0IsY0FBYztDQUNkLGdCQUFnQjtBQUNqQjtBQUVBO0NBQ0Msb0RBQW9EO0NBQ3BELGtEQUFrRDtDQUNsRCxvREFBb0Q7QUFDckQ7QUFFQTs7OztDQUlDLDZDQUE2QyxFQUFFLE1BQU07QUFDdEQ7QUFFQTtDQUNDLDRDQUE0QyxFQUFFLE1BQU07QUFDckQ7QUFFQTtDQUNDLDZDQUE2QyxFQUFFLFFBQVE7QUFDeEQ7QUFFQTtDQUNDLDRDQUE0QyxFQUFFLE1BQU07QUFDckQ7QUFFQTtDQUNDLG1EQUFtRCxFQUFFLFFBQVE7QUFDOUQ7QUFFQTtDQUNDLDZDQUE2QyxFQUFFLFFBQVE7QUFDeEQ7QUFFQTtDQUNDLDRDQUE0QyxFQUFFLE1BQU07QUFDckQ7QUFFQTtDQUNDLGtEQUFrRCxFQUFFLE1BQU07QUFDM0Q7QUFFQTtDQUNDLGtEQUFrRCxFQUFFLE1BQU07QUFDM0Q7QUFFQTtDQUNDLGtCQUFrQjtDQUNsQiw0Q0FBNEMsRUFBRSxNQUFNO0FBQ3JEO0FBRUE7Q0FDQyw0Q0FBNEMsRUFBRSxRQUFRO0FBQ3ZEO0FDN0ZBOzs7Ozs7Ozs7Ozs7O0VBYUU7QUFFRjtDQUNDLDZCQUE2QjtDQUM3QixjQUFjO0NBQ2QsZ0JBQWdCO0FBQ2pCO0FBRUE7Q0FDQyw2QkFBNkI7Q0FDN0IsY0FBYztDQUNkLG1CQUFtQjtBQUNwQjtBQUVBO0NBQ0MsNkJBQTZCO0NBQzdCLGNBQWM7Q0FDZCxtQkFBbUI7QUFDcEI7QUFFQTtDQUNDLDZCQUE2QjtDQUM3QixjQUFjO0NBQ2QsbUJBQW1CO0FBQ3BCO0FBRUE7Q0FDQyw2QkFBNkI7Q0FDN0IsY0FBYztDQUNkLHFCQUFxQjtBQUN0QjtBQUVBO0NBQ0MsNkJBQTZCO0NBQzdCLGNBQWM7Q0FDZCxtQkFBbUI7QUFDcEI7QUFFQTtDQUNDLDBDQUEwQztDQUMxQyx1Q0FBdUM7Q0FDdkMseUNBQXlDO0NBQ3pDLHlDQUF5QztBQUMxQztBQUVBO0NBQ0Msa0JBQWtCO0NBQ2xCLHNFQUFzRTtBQUN2RTtBQUVBO0NBQ0Msa0NBQWtDO0FBQ25DO0FBRUE7Q0FDQyxrQ0FBa0M7QUFDbkM7QUFFQTtDQUNDLGtDQUFrQztBQUNuQztBQUVBO0NBQ0Msa0NBQWtDO0FBQ25DO0FBR0E7Ozs7O0VBS0U7QUFFRjtDQUNDLHdDQUF3QztBQUN6QztBQUVBO0NBQ0Msd0NBQXdDO0FBQ3pDO0FBRUE7Q0FDQyx3Q0FBd0M7QUFDekM7QUFFQTtDQUNDLHdDQUF3QztBQUN6QztBQ3JHQTs7Ozs7Ozs7O0VBU0U7QUFFRjtDQUNDLDZCQUE2QjtDQUM3QixjQUFjO0NBQ2QsZ0JBQWdCO0FBQ2pCO0FBRUE7Q0FDQyw2QkFBNkI7Q0FDN0IsY0FBYztDQUNkLGdCQUFnQjtBQUNqQjtBQUVBO0NBQ0MsOENBQThDO0NBQzlDLDZDQUE2QztBQUM5QztBQUVBO0NBQ0Msd0NBQXdDO0NBQ3hDLDBDQUEwQztBQUMzQyIsImZpbGUiOiJidW5kbGUuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBPcmRlciBiZXR3ZWVuIGJsb2NrcyBhbmQgc2VjdGlvbnMgaXMgaW1wb3J0YW50OlxuICogc2VjdGlvbnMgY29tcGxlbWVudCBoZWFkaW5nIHNwYWNpbmcgd2l0aCBhZGRpdGlvbmFsIHJ1bGVzXG4gKiB0aGF0IHNob3VsZCBnbyBhZnRlciBnZW5lcmFsIHJ1bGVzIHRvIG92ZXJyaWRlIHRoZW0uXG4gKi9cbkBpbXBvcnQgdXJsKCdibG9ja3MuY3NzJyk7XG5AaW1wb3J0IHVybCgnc2VjdGlvbnMuY3NzJyk7XG5AaW1wb3J0IHVybCgnYm9keS5jc3MnKTtcbiIsIi8qIVxuICogQ29udGVudCBibG9ja3Mgc3BhY2luZ1xuICpcbiAqIEdhcHMgYmV0d2VlbiBIVE1MIGVsZW1lbnRzIGdyb3VwcGluZyBjb250ZW50XG4gKiBsaXN0ZWQgaW4gwqc0LjQgb2YgSFRNTCBMaXZpbmcgU3RhbmRhcmQ6XG4gKiBodHRwczovL2h0bWwuc3BlYy53aGF0d2cub3JnL211bHRpcGFnZS9ncm91cGluZy1jb250ZW50Lmh0bWxcbiAqXG4gKiAxLiAgUmVndWxhciBzcGFjaW5nIGJldHdlZW4gY29udGVudCBmbG93IGJsb2Nrc1xuICogMi4gIENvbmRlbnNlZCBzcGFjaW5nIGJldHdlZW4gbGlzdCBpdGVtc1xuICogICAgIDIuMSB1bmxlc3MgdGhleSBjb250YWluIG90aGVyIGNvbnRlbnQgZmxvdyBibG9ja3NcbiAqICAgICAyLjIgdW5sZXNzIHRoZXkgYXJlIHRpdGxlLWRlc2NyaXB0aW9uIGdyb3Vwc1xuICogMy4gIFNtYWxsZXIgc3BhY2UgYmV0d2VlbiBncm91cHBlZCBoZWFkaW5nc1xuICogICAgIGFzIHdlbGwgYXMgaGVhZGluZ3MgYW5kIHN1YmhlYWRpbmdzL3N1YnRpdGxlc1xuICogNC4gIExhcmdlciBzcGFjaW5nIGJlZm9yZSBhbmQgYWZ0ZXIgZmlndXJlc1xuICogICAgIDQuMSBidXQgc21hbGwgY2FwdGlvbnMgc2hvdWxkIGJlIGNsb3NlIHRvIHRoZSBmaWd1cmUgY29udGVudFxuICovXG5cbkBwcm9wZXJ0eSAtLWNvbnRlbnQtYmxvY2stZ2FwIHtcblx0c3ludGF4OiAnPGxlbmd0aC1wZXJjZW50YWdlPic7XG5cdGluaGVyaXRzOiB0cnVlO1xuXHRpbml0aWFsLXZhbHVlOiAwO1xufVxuXG5AcHJvcGVydHkgLS1jb250ZW50LWJsb2NrLWdhcC1zbWFsbCB7XG5cdHN5bnRheDogJzxsZW5ndGgtcGVyY2VudGFnZT4nO1xuXHRpbmhlcml0czogdHJ1ZTtcblx0aW5pdGlhbC12YWx1ZTogMDtcbn1cblxuQHByb3BlcnR5IC0tY29udGVudC1ibG9jay1nYXAtbm9ybWFsIHtcblx0c3ludGF4OiAnPGxlbmd0aC1wZXJjZW50YWdlPic7XG5cdGluaGVyaXRzOiB0cnVlO1xuXHRpbml0aWFsLXZhbHVlOiAwO1xufVxuXG5AcHJvcGVydHkgLS1jb250ZW50LWJsb2NrLWdhcC1sYXJnZSB7XG5cdHN5bnRheDogJzxsZW5ndGgtcGVyY2VudGFnZT4nO1xuXHRpbmhlcml0czogdHJ1ZTtcblx0aW5pdGlhbC12YWx1ZTogMDtcbn1cblxuOndoZXJlKDpyb290KSB7XG5cdC0tY29udGVudC1ibG9jay1nYXAtc21hbGw6ICB2YXIoLS1zcGFjZS0zMDAsIC43NXJlbSk7XG5cdC0tY29udGVudC1ibG9jay1nYXAtbm9ybWFsOiB2YXIoLS1zcGFjZS00MDAsIDFyZW0pO1xuXHQtLWNvbnRlbnQtYmxvY2stZ2FwLWxhcmdlOiAgdmFyKC0tc3BhY2UtNTAwLCAxLjVyZW0pO1xufVxuXG5wLCBocixcbnByZSxcbmJsb2NrcXVvdGUsXG5kbCwgb2wsIHVsIHtcblx0bWFyZ2luLWJsb2NrOiB2YXIoLS1jb250ZW50LWJsb2NrLWdhcC1ub3JtYWwpOyAvKiAxICovXG59XG5cbmxpIHtcblx0bWFyZ2luLWJsb2NrOiB2YXIoLS1jb250ZW50LWJsb2NrLWdhcC1zbWFsbCk7IC8qIDIgKi9cbn1cblxuOndoZXJlKG9sLCB1bCk6aGFzKHAsIGRsLCBvbCwgdWwsIHByZSwgYmxvY2txdW90ZSkgbGkge1xuXHRtYXJnaW4tYmxvY2s6IHZhcigtLWNvbnRlbnQtYmxvY2stZ2FwLW5vcm1hbCk7IC8qIDIuMSAqL1xufVxuXG5kdCwgZGQge1xuXHRtYXJnaW4tYmxvY2s6IHZhcigtLWNvbnRlbnQtYmxvY2stZ2FwLXNtYWxsKTsgLyogMiAqL1xufVxuXG5kZCArIGR0IHtcblx0bWFyZ2luLWJsb2NrLXN0YXJ0OiB2YXIoLS1jb250ZW50LWJsb2NrLWdhcC1ub3JtYWwpOyAvKiAyLjIgKi9cbn1cblxuZHQgPiA6d2hlcmUoZGl2KSB7XG5cdG1hcmdpbi1ibG9jazogdmFyKC0tY29udGVudC1ibG9jay1nYXAtbm9ybWFsKTsgLyogMi4yICovXG59XG5cbmgxLCBoMiwgaDMsIGg0LCBoNSwgaDYsIGhncm91cCB7XG5cdG1hcmdpbi1ibG9jazogdmFyKC0tY29udGVudC1ibG9jay1nYXAtc21hbGwpOyAvKiAzICovXG59XG5cbjppcyhoMSwgaDIsIGgzLCBoNCwgaDUsIGg2LCBoZ3JvdXAsIGhlYWRlcikgKyAqIHtcblx0bWFyZ2luLWJsb2NrLXN0YXJ0OiB2YXIoLS1jb250ZW50LWJsb2NrLWdhcC1zbWFsbCk7IC8qIDMgKi9cbn1cblxuaGdyb3VwID4gKiArICoge1xuXHRtYXJnaW4tYmxvY2stc3RhcnQ6IHZhcigtLWNvbnRlbnQtYmxvY2stZ2FwLXNtYWxsKTsgLyogMyAqL1xufVxuXG5maWd1cmUge1xuXHRtYXJnaW4tdHJpbTogYmxvY2s7XG5cdG1hcmdpbi1ibG9jazogdmFyKC0tY29udGVudC1ibG9jay1nYXAtbGFyZ2UpOyAvKiA0ICovXG59XG5cbmZpZ2NhcHRpb24ge1xuXHRtYXJnaW4tYmxvY2s6IHZhcigtLWNvbnRlbnQtYmxvY2stZ2FwLXNtYWxsKTsgLyogNC4xICovXG59XG4iLCIvKiFcbiAqIFNlY3Rpb24gc3BhY2luZ1xuICpcbiAqIEdhcHMgYmV0d2VlbiBIVE1MIHNlY3Rpb25pbmcgZWxlbWVudHNcbiAqIGxpc3RlZCBpbiDCpzQuMyBvZiBIVE1MIExpdmluZyBTdGFuZGFyZDpcbiAqIGh0dHBzOi8vaHRtbC5zcGVjLndoYXR3Zy5vcmcvbXVsdGlwYWdlL3NlY3Rpb25zLmh0bWxcbiAqXG4gKiBTZWN0aW9uIGxldmVsIGlzIGV4dHJhY3RlZCBieSB0aGUgbGFyZ2VzdCBjb250YWluZWQgaGVhZGluZy5cbiAqIFRoaXMgaXMgYWNoaWV2ZWQgYnkgYXBwbHlpbmcgYSBzZXJpZSBvZiA6aGFzKCkgc2VsZWN0b3JzXG4gKiBpbiBhIGRlc2NlbmRlbnQgb3JkZXJcbiAqXG4gKiBBbHNvLCBhcHBsaWVzIHNlY3Rpb24gbWFyZ2lucyB0byBoZWFkaW5nc1xuICogZm9yIHRoZSBjYXNlIHdoZW4gc2VjdGlvbmluZyB3cmFwcGVycyBvbWl0dGVkLlxuICovXG5cbkBwcm9wZXJ0eSAtLXNlY3Rpb24tZ2FwIHtcblx0c3ludGF4OiAnPGxlbmd0aC1wZXJjZW50YWdlPic7XG5cdGluaGVyaXRzOiB0cnVlO1xuXHRpbml0aWFsLXZhbHVlOiAwO1xufVxuXG5AcHJvcGVydHkgLS1zZWN0aW9uLWdhcC0xIHtcblx0c3ludGF4OiAnPGxlbmd0aC1wZXJjZW50YWdlPic7XG5cdGluaGVyaXRzOiB0cnVlO1xuXHRpbml0aWFsLXZhbHVlOiA0cmVtO1xufVxuXG5AcHJvcGVydHkgLS1zZWN0aW9uLWdhcC0yIHtcblx0c3ludGF4OiAnPGxlbmd0aC1wZXJjZW50YWdlPic7XG5cdGluaGVyaXRzOiB0cnVlO1xuXHRpbml0aWFsLXZhbHVlOiAzcmVtO1xufVxuXG5AcHJvcGVydHkgLS1zZWN0aW9uLWdhcC0zIHtcblx0c3ludGF4OiAnPGxlbmd0aC1wZXJjZW50YWdlPic7XG5cdGluaGVyaXRzOiB0cnVlO1xuXHRpbml0aWFsLXZhbHVlOiAycmVtO1xufVxuXG5AcHJvcGVydHkgLS1zZWN0aW9uLWdhcC00IHtcblx0c3ludGF4OiAnPGxlbmd0aC1wZXJjZW50YWdlPic7XG5cdGluaGVyaXRzOiB0cnVlO1xuXHRpbml0aWFsLXZhbHVlOiAxLjVyZW07XG59XG5cbkBwcm9wZXJ0eSAtLXNlY3Rpb24tZ2FwLWJhc2Uge1xuXHRzeW50YXg6ICc8bGVuZ3RoLXBlcmNlbnRhZ2U+Jztcblx0aW5oZXJpdHM6IHRydWU7XG5cdGluaXRpYWwtdmFsdWU6IDFyZW07XG59XG5cbjp3aGVyZSg6cm9vdCkge1xuXHQtLXNlY3Rpb24tZ2FwLTE6IHZhcigtLXNwYWNlLTkwMCwgMy4wNXJlbSk7XG5cdC0tc2VjdGlvbi1nYXAtMjogdmFyKC0tc3BhY2UtODAwLCAycmVtKTtcblx0LS1zZWN0aW9uLWdhcC0zOiB2YXIoLS1zcGFjZS03MDAsIDEuNXJlbSk7XG5cdC0tc2VjdGlvbi1nYXAtNDogdmFyKC0tc3BhY2UtNjAwLCAxLjNyZW0pO1xufVxuXG46aXMoYXJ0aWNsZSwgc2VjdGlvbiwgbmF2LCBhc2lkZSkge1xuXHRtYXJnaW4tdHJpbTogYmxvY2s7XG5cdG1hcmdpbi1ibG9jazogdmFyKC0tY29udGVudC1nYXAtbm9ybWFsLCB2YXIoLS1zZWN0aW9uLWdhcC1iYXNlLCAxcmVtKSk7XG59XG5cbjp3aGVyZShhcnRpY2xlLCBzZWN0aW9uLCBuYXYsIGFzaWRlKTpoYXMoaDQpIHtcblx0bWFyZ2luLWJsb2NrOiB2YXIoLS1zZWN0aW9uLWdhcC00KTtcbn1cblxuOndoZXJlKGFydGljbGUsIHNlY3Rpb24sIG5hdiwgYXNpZGUpOmhhcyhoMykge1xuXHRtYXJnaW4tYmxvY2s6IHZhcigtLXNlY3Rpb24tZ2FwLTMpO1xufVxuXG46d2hlcmUoYXJ0aWNsZSwgc2VjdGlvbiwgbmF2LCBhc2lkZSk6aGFzKGgyKSB7XG5cdG1hcmdpbi1ibG9jazogdmFyKC0tc2VjdGlvbi1nYXAtMik7XG59XG5cbjp3aGVyZShhcnRpY2xlLCBzZWN0aW9uLCBuYXYsIGFzaWRlKTpoYXMoaDEpIHtcblx0bWFyZ2luLWJsb2NrOiB2YXIoLS1zZWN0aW9uLWdhcC0xKTtcbn1cblxuXG4vKipcbiAqIEhlYWRpbmcgc3BhY2luZ1xuICogd2hlbiBzZWN0aW9uaW5nIHdyYXBwZXJzIGFyZSBvbWl0dGVkLlxuICpcbiAqIFRoZXNlIG1hcmdpbnMgYXJlIG5vcm1hbGx5IHRyaW1tZWQgYnkgdGhlIG5lYXJlc3Qgc2VjdGlvbi5cbiAqL1xuXG5oMSB7XG5cdG1hcmdpbi1ibG9jay1zdGFydDogdmFyKC0tc2VjdGlvbi1nYXAtMSk7XG59XG5cbmgyIHtcblx0bWFyZ2luLWJsb2NrLXN0YXJ0OiB2YXIoLS1zZWN0aW9uLWdhcC0yKTtcbn1cblxuaDMge1xuXHRtYXJnaW4tYmxvY2stc3RhcnQ6IHZhcigtLXNlY3Rpb24tZ2FwLTMpO1xufVxuXG5oNCB7XG5cdG1hcmdpbi1ibG9jay1zdGFydDogdmFyKC0tc2VjdGlvbi1nYXAtNCk7XG59XG4iLCIvKiFcbiAqIFBhZ2UgYm9keSBwYWRkaW5nXG4gKlxuICogRGVmaW5lcyBjdXN0b20gcHJvcGVydGllcyBmb3IgcGFnZSBib2R5IHBhZGRpbmdzXG4gKiB0aGF0IGNhbiBiZSB1c2VkIGluIGNhbGMtZXhwcmVzc2lvbnMsXG4gKiBhbmQgYXBwbGllcyB0aG9zZSB0byB0aGUgZG9jdW1lbnQgYDxib2R5PmBcbiAqIHdpdGggMCBzcGVjaWZpY2l0eSBmb3IgYW4gZWFzeSBvdmVycmlkZS5cbiAqXG4gKiBFeHByZWN0cyBib2R5IG1hcmdpbiByZXNldCBhcHBsaWVkLlxuICovXG5cbkBwcm9wZXJ0eSAtLWJvZHktcGFkZGluZy1ibG9jayB7XG5cdHN5bnRheDogJzxsZW5ndGgtcGVyY2VudGFnZT4nO1xuXHRpbmhlcml0czogdHJ1ZTtcblx0aW5pdGlhbC12YWx1ZTogMDtcbn1cblxuQHByb3BlcnR5IC0tYm9keS1wYWRkaW5nLWlubGluZSB7XG5cdHN5bnRheDogJzxsZW5ndGgtcGVyY2VudGFnZT4nO1xuXHRpbmhlcml0czogdHJ1ZTtcblx0aW5pdGlhbC12YWx1ZTogMDtcbn1cblxuOndoZXJlKDpyb290KSB7XG5cdC0tYm9keS1wYWRkaW5nLWJsb2NrOiB2YXIoLS1zcGFjZS02MDAsIDEuNXJlbSk7XG5cdC0tYm9keS1wYWRkaW5nLWlubGluZTogdmFyKC0tc3BhY2UtNzAwLCAycmVtKTtcbn1cblxuOndoZXJlKGJvZHkpIHtcblx0cGFkZGluZy1ibG9jazogdmFyKC0tYm9keS1wYWRkaW5nLWJsb2NrKTtcblx0cGFkZGluZy1pbmxpbmU6IHZhcigtLWJvZHktcGFkZGluZy1pbmxpbmUpO1xufVxuIl19 */

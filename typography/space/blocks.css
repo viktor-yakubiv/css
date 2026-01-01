@@ -1,0 +1,94 @@
+/*!
+ * Content blocks spacing
+ *
+ * Gaps between HTML elements groupping content
+ * listed in §4.4 of HTML Living Standard:
+ * https://html.spec.whatwg.org/multipage/grouping-content.html
+ *
+ * 1.  Regular spacing between content flow blocks
+ * 2.  Condensed spacing between list items
+ *     2.1 unless they contain other content flow blocks
+ *     2.2 unless they are title-description groups
+ * 3.  Smaller space between groupped headings
+ *     as well as headings and subheadings/subtitles
+ * 4.  Larger spacing before and after figures
+ *     4.1 but small captions should be close to the figure content
+ */
+
+@property --content-block-gap {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --content-block-gap-small {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --content-block-gap-normal {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --content-block-gap-large {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+
+:where(:root) {
+	--content-block-gap-small:  var(--space-300, .75rem);
+	--content-block-gap-normal: var(--space-400, 1rem);
+	--content-block-gap-large:  var(--space-500, 1.5rem);
+}
+
+p, hr,
+pre,
+blockquote,
+dl, ol, ul {
+	margin-block: var(--content-block-gap-normal); /* 1 */
+}
+
+li {
+	margin-block: var(--content-block-gap-small); /* 2 */
+}
+
+:where(ol, ul):has(p, dl, ol, ul, pre, blockquote) li {
+	margin-block: var(--content-block-gap-normal); /* 2.1 */
+}
+
+dt, dd {
+	margin-block: var(--content-block-gap-small); /* 2 */
+}
+
+dd + dt {
+	margin-block-start: var(--content-block-gap-normal); /* 2.2 */
+}
+
+dt > :where(div) {
+	margin-block: var(--content-block-gap-normal); /* 2.2 */
+}
+
+h1, h2, h3, h4, h5, h6, hgroup {
+	margin-block: var(--content-block-gap-small); /* 3 */
+}
+
+:is(h1, h2, h3, h4, h5, h6, hgroup, header) + * {
+	margin-block-start: var(--content-block-gap-small); /* 3 */
+}
+
+hgroup > * + * {
+	margin-block-start: var(--content-block-gap-small); /* 3 */
+}
+
+figure {
+	margin-trim: block;
+	margin-block: var(--content-block-gap-large); /* 4 */
+}
+
+figcaption {
+	margin-block: var(--content-block-gap-small); /* 4.1 */
+}

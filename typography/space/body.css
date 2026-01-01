@@ -1,0 +1,32 @@
+/*!
+ * Page body padding
+ *
+ * Defines custom properties for page body paddings
+ * that can be used in calc-expressions,
+ * and applies those to the document `<body>`
+ * with 0 specificity for an easy override.
+ *
+ * Exprects body margin reset applied.
+ */
+
+@property --body-padding-block {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+
+@property --body-padding-inline {
+	syntax: '<length-percentage>';
+	inherits: true;
+	initial-value: 0;
+}
+
+:where(:root) {
+	--body-padding-block: var(--space-600, 1.5rem);
+	--body-padding-inline: var(--space-700, 2rem);
+}
+
+:where(body) {
+	padding-block: var(--body-padding-block);
+	padding-inline: var(--body-padding-inline);
+}
