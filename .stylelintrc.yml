@@ -15,7 +15,7 @@ rules:
   '@stylistic/declaration-colon-newline-after': null
   '@stylistic/declaration-colon-space-after': null
   '@stylistic/function-parentheses-newline-inside': null
-  '@stylistic/selector-list-comma-newline-after': always-multi-line
+  '@stylistic/selector-list-comma-newline-after': null
   at-rule-empty-line-before:
     - always
     - except:
